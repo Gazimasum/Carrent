@@ -268,7 +268,7 @@
               @endforeach
               </div>
               <div class="product-listing-content">
-                <h5><a href="">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
+                <h5><a href="{{route('vehicles_details',$v->id)}}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
                 <p class="list-price">${{$v->PricePerDay}}</p>
 
                 <ul class="features_list">

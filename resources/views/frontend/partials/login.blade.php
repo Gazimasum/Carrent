@@ -9,21 +9,6 @@
         <div class="row">
           <div class="login_wrap">
             <div class="col-md-12 col-sm-6">
-              {{-- <form method="post">
-                <div class="form-group">
-                  <input type="email" class="form-control" name="email" placeholder="Email address*">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" name="password" placeholder="Password*">
-                </div>
-                <div class="form-group checkbox">
-                  <input type="checkbox" id="remember">
-
-                </div>
-                <div class="form-group">
-                  <input type="submit" name="login" value="Login" class="btn btn-block">
-                </div>
-              </form> --}}
               <form method="POST" action="{{ route('login') }}">
                   @csrf
 

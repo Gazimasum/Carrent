@@ -1,17 +1,7 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
+@extends('backend.layouts.master')
+@section('content')
 
-<head>
-@include('backend.partial.style')
-</head>
-
-<body>
-
-@include('backend.partial.header')
-
-	<div class="ts-main-content">
-@include('backend.partial.leftbar')
 		<div class="content-wrapper">
 			<div class="container-fluid">
 
@@ -82,7 +72,4 @@
 		</div>
 	</div>
 
-{{-- @include('backend.partial.script') --}}
-
-</body>
-</html>
+@endsection

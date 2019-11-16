@@ -44,6 +44,16 @@ Route::get('/home', 'HomeController@index')->name('home');
     // Password Reset
     Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\Admin\ResetPasswordController@reset')->name('admin.password.reset.post');
+
+    //brands
+    Route::get('/create/brand','Backend\PagesController@createbrand')->name('admin.brand.create');
+    Route::post('/store/brand','Backend\BrandController@store')->name('admin.brand.store');
+    Route::get('/manage/brand','Backend\PagesController@managebrand')->name('admin.brand.manage');
+    Route::get('/manage/brand/{id}','Backend\PagesController@editbrand')->name('admin.brand.edit');
+    Route::post('/manage/brand/update/{id}','Backend\BrandController@update')->name('admin.brand.update');
+    Route::post('/manage/brand/delete/{id}','Backend\BrandController@delete')->name('admin.brand.delete');
+
+
 });
 
 

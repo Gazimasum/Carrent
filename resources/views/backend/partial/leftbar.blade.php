@@ -6,8 +6,8 @@
 
 <li><a href="#"><i class="fa fa-files-o"></i> Brands</a>
 <ul>
-<li><a href="">Create Brand</a></li>
-<li><a href="">Manage Brands</a></li>
+<li><a href="{!! route('admin.brand.create') !!}">Create Brand</a></li>
+<li><a href="{!! route('admin.brand.manage') !!}">Manage Brands</a></li>
 </ul>
 </li>
 

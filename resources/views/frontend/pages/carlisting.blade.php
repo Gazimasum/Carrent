@@ -110,7 +110,7 @@
 							@endif
 								 @php $i--; @endphp
 								 @endforeach
-							  <div class="recent_post_title"> <a href="3">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
+							  <div class="recent_post_title"> <a href="{{route('vehicles_details',$v->id)}}">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
                   <p class="widget_price">${{$rv->PricePerDay}} Per Day</p>
                 </div>
               </li>
