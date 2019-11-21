@@ -8,6 +8,11 @@
 <script src="{{asset('admin/js/fileinput.js')}}"></script>
 <script src="{{asset('admin/js/chartData.js')}}"></script>
 <script src="{{asset('admin/js/main.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+
+</script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+      {!! Toastr::message() !!}
 <script>
 
 // window.onload = function(){
@@ -31,3 +36,19 @@
 //
 // }
 // </script>
+<script type="text/javascript">
+function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#blah')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>

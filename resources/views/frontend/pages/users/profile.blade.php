@@ -24,13 +24,13 @@
 <section class="user_profile inner_pages">
   <div class="container">
     <div class="user_profile_info gray-bg padding_4x4_40">
-      <div class="upload_user_logo"> <img src="{!! asset('images/dealer-logo.png') !!}" alt="image">
+      <div class="upload_user_logo"> <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}"  style="width:100px; border-radius: 50%;"  alt="image">
       </div>
 
       <div class="dealer_info">
         <h5>{{$user->name}}</h5>
-        <p>{{$user->street_address}}<br>
-          {{$user->city}}&nbsp;{{$user->country}}</p>
+        <p>Street Address : {{$user->street_address}}<br>
+        City : {{$user->city}}<br> Country : {{$user->country}}</p>
       </div>
     </div>
 

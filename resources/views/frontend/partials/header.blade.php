@@ -117,15 +117,15 @@
 
                     @else
 
-                     <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->name }}
+                     <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" style="width:30px; border-radius: 50%;"> {{ Auth::user()->name }}
 
                         <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                        <ul class="dropdown-menu">
                          <li><a href="{!! route('profile') !!}">Profile Settings</a></li>
                          <li><a href="{!! route('profile.update.password') !!}">Update Password</a></li>
-                         <li><a href="my-booking.php">My Booking</a></li>
-                         <li><a href="post-testimonial.php">Post a Testimonial</a></li>
-                         <li><a href="my-testimonials.php">My Testimonial</a></li>
+                         <li><a href="{!! route('mybooking') !!}">My Booking</a></li>
+                         <li><a href="{!! route('user.post_testimonial_view') !!}">Post a Testimonial</a></li>
+                         <li><a href="{!! route('user.mytestimonial') !!}">My Testimonial</a></li>
                          <li>   <a  href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">

@@ -19,3 +19,4 @@
 <link rel="apple-touch-icon-precomposed" href="{{asset('images/favicon-icon/apple-touch-icon-57-precomposed.png')}}">
 <link rel="shortcut icon" href="{{asset('images/favicon-icon/favicon.png')}}">
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

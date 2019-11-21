@@ -13,7 +13,7 @@
   								<div class="panel panel-default">
   									<div class="panel-heading">Form fields</div>
   									<div class="panel-body">
-  										<form method="post" action="{!! route('admin.brand.update',$brands->id) !!}" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
+  										<form method="post" action="{!! route('admin.brand.update',$brands->id) !!}" name="chngpwd" class="form-horizontal" >
                         @csrf
                         @include('backend.partial.messages')
   											<div class="form-group">

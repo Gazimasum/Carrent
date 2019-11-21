@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Brian2694\Toastr\Facades\Toastr;
 use Auth;
 use User;
 
@@ -12,7 +13,7 @@ class UsersController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+       $this->middleware(['auth', 'verified']);
   }
   public function profile()
   {
@@ -41,7 +42,7 @@ class UsersController extends Controller
     $user->phone_no = $request->phonenumber;
     $user->street_address = $request->address;
     $user->save();
-    session()->flash('success','Updated Successfull');
+     Toastr::success('Updated Successfull....', 'Success', ["positionClass" => "toast-top-center"]);
     return back();
   }
 
@@ -61,7 +62,8 @@ class UsersController extends Controller
       $user->password = Hash::make($request->password);
     }
     $user->save();
-    session()->flash('success','Updated Successfull');
+       Toastr::success('Password Updated Successfull....', 'Success', ["positionClass" => "toast-top-center"]);
+
     return back();
   }
 

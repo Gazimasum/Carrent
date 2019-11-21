@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Notifications\VerifyRegistration;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -50,6 +54,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'phone'=>['required','min:11','max:15'],
             'email' => ['required', 'string', 'email:rfc', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:7', 'confirmed'],
         ]);
@@ -61,13 +66,41 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+protected function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone_no' => $data['phone'],
-            'password' => Hash::make($data['password']),
-        ]);
+$random = Str::random(40);
+  $userr=User::where('email',$request->email)->first();
+  if (is_null($userr)) {
+    $userr=User::where('phone_no',$request->phone)->first();
+    if (is_null($userr)) {
+          $user = User::create([
+            'name' => $request->name,
+            'phone_no' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'remember_token'  =>str_random(50),
+            'status'  => 0,
+          ]);
+
+          $user->notify(new VerifyRegistration($user));
+
+          
+          Toastr::success('A confirmation email has sent to you.. Please check and confirm your email', 'success', ["positionClass" => "toast-top-center"]);
+          return redirect('/');
+        }
+    else {
+      Toastr::warning('Phone Already in Used..', 'warning', ["positionClass" => "toast-top-center"]);
+      return redirect('/');
     }
+  } else {
+      Toastr::warning('Email Already in Used..', 'warning', ["positionClass" => "toast-top-center"]);
+    return redirect('/');
+  }
+
+
+
+    }
+
+
+
 }

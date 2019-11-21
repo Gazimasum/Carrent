@@ -12,3 +12,7 @@
 <link rel="stylesheet" href="{{asset('admin/css/fileinput.min.css')}}">
 <link rel="stylesheet" href="{{asset('admin/css/awesome-bootstrap-checkbox.css')}}">
 <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<style media="screen">
+
+</style>

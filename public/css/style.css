@@ -3840,6 +3840,7 @@ table.info-tabel tr td {
   float: right;
   text-align: right;
   width: 25%;
+	margin-right: 30px;
 }
 .vehicle_status a i {
 	margin:10px 0 0 8px;

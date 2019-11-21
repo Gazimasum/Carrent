@@ -3,11 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-
+      use Notifiable;
       /**
        * The attributes that are mass assignable.
        *
@@ -33,8 +34,7 @@ class Admin extends Authenticatable
 
       public static function totalAdmin(){
 
+         return  Admin::count();
 
-        $adminno=Admin::where('type','super Admin')->orwhere('type','Admin')->count();
-        return $adminno;
       }
 }

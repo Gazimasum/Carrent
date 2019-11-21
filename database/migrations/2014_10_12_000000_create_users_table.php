@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('street_address')->nullable();
             $table->string('city')->nullable();
-
+            $table->unsignedTinyInteger('status')->default(0)->comment('0=Inactive|1=Active|2=Ban');
             $table->rememberToken();
             $table->timestamps();
         });

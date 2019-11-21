@@ -27,6 +27,7 @@ Route::post('booking/{id}','Frontend\BookingController@store')->name('booking');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index', 'HomeController@index')->name('home');
 
 
 //Admin Route
@@ -53,7 +54,28 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/manage/brand/update/{id}','Backend\BrandController@update')->name('admin.brand.update');
     Route::post('/manage/brand/delete/{id}','Backend\BrandController@delete')->name('admin.brand.delete');
 
+    //vehicle
+    Route::get('/create/vehicle','Backend\PagesController@createvehicle')->name('admin.vehicle.create');
+    Route::post('/store/vehicle','Backend\VehicleController@store')->name('admin.vehicle.store');
+    Route::get('/manage/vehicle','Backend\VehicleController@index')->name('admin.vehicle.manage');
+    Route::get('/manage/vehicle/{id}','Backend\PagesController@editvehicle')->name('admin.vehicle.edit');
+    Route::post('/manage/vehicle/update/{id}','Backend\VehicleController@update')->name('admin.vehicle.update');
+    Route::post('/manage/vehicle/delete/{id}','Backend\VehicleController@delete')->name('admin.vehicle.delete');
+    Route::post('/manage/vehicle/changeimage/{id}','Backend\VehicleController@changeimage')->name('admin.vehicle.image');
 
+//bookings
+
+    Route::get('/booking','Backend\PagesController@bookingview')->name('admin.booking');
+    Route::post('/booking/confirm/{id}','Backend\BookingController@confirm')->name('admin.booking.confirm');
+    Route::post('/booking/notconfirm/{id}','Backend\BookingController@notconfirm')->name('admin.booking.notconfirm');
+    Route::post('/booking/cancle/{id}','Backend\BookingController@cancle')->name('admin.booking.cancle');
+
+
+    //testimonieal && contact_us
+
+    Route::get('/testimonieal','Backend\TestimonielController@testimoniealview')->name('admin.testimonieal');
+    Route::post('/testimonieal/active/{id}','Backend\TestimonielController@testimoniealactive')->name('admin.testimonieal.active');
+    Route::post('/testimonieal/deactive/{id}','Backend\TestimonielController@testimoniealdeactive')->name('admin.testimonieal.deactive');
 });
 
 
@@ -61,8 +83,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user'],function ()
 {
+//  Route::post('/reg','Auth\RegisterController@register')->name('registeration');
   Route::get('/ profile','Frontend\UsersController@profile')->name('profile');
+  Route::get('/ mybooking','Frontend\BookingController@mybooking')->name('mybooking');
   Route::post('/ profile/update','Frontend\UsersController@update')->name('profile.update');
   Route::get('/ profile/updatepassword','Frontend\UsersController@updatepasswordview')->name('profile.update.password');
   Route::post('/ profile/ update/ password','Frontend\UsersController@updatepassword')->name('profile.updatepassword');
+  Route::get('/token/{token}', 'Frontend\VerficationController@verify')->name('user.verification');
+  Route::get('/mytestimonial', 'Frontend\TestimonialController@index')->name('user.mytestimonial');
+  Route::get('/posttestimonialview', 'Frontend\TestimonialController@view')->name('user.post_testimonial_view');
+  Route::post('/testimonieal/post', 'Frontend\TestimonialController@store')->name('user.post_testimonial');
 });

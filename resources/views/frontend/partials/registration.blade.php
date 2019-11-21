@@ -33,7 +33,9 @@
                   <label for="terms_agree">I Agree with <a href="#">Terms and Conditions</a></label>
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Sign Up" name="signup" id="submit" class="btn btn-block">
+                    <button type="submit" class="btn btn-primary">signup
+                    </button>
+                  {{-- <input type="submit" name="signup" id="submit" class="btn btn-block"> --}}
                 </div>
               </form>
             </div>

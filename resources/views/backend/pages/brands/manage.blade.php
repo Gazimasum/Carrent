@@ -5,10 +5,12 @@
           <div class="row">
             <div class="col-md-12">
               <h2 class="page-title">Manage Brands</h2>
+                <div class="" style="position: absolute;top: 10px;right: 0;padding-right:100px;"><a href="{!! route('admin.brand.create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> Add Brand</a></div>
 
                   <!-- Zero Configuration Table -->
                   <div class="panel panel-default">
                     <div class="panel-heading">Listed  Brands</div>
+
                     <div class="panel-body">
                     @include('backend.partial.messages')
                       <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">

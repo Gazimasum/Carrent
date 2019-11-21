@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Brand;
+use Brian2694\Toastr\Facades\Toastr;
 
 class BrandController extends Controller
 {
@@ -47,8 +48,10 @@ class BrandController extends Controller
      $brand->name=$request->name;
      $brand->save();
 
-     session()->flash('success',('A New Brand Added Successfully..'));
-     return redirect()->route('admin.brand.create');
+     // session()->flash('success',('A New Brand Added Successfully..'));
+   Toastr::success('A New Brand Added Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
+    //  Toastr::success('message', 'Category add successfully!');
+     return back();
     }
 
     /**
@@ -87,7 +90,8 @@ class BrandController extends Controller
 
          $brand->delete();
        }
-       session()->flash('success','brand has deleted Successfully..');
+      // session()->flash('success','brand has deleted Successfully..');
+       Toastr::success(' Brand Deleted Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
        return back();
      }
 
@@ -95,8 +99,9 @@ class BrandController extends Controller
          $brand=Brand::find($id);
          $brand->name=$request->name;
          $brand->save();
-       session()->flash('success',('Brand has updated Successfully..'));
-       return redirect()->route('admin.brand.edit');
+
+       Toastr::success('Brand has updated Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
+       return back();
        }
 
     /**

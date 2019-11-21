@@ -11,7 +11,6 @@
 
 	<div class="ts-main-content">
 @include('backend.partial.leftbar')
-@include('backend.partial.messages')
 
 @yield('content')
 @include('backend.partial.script')

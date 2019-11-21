@@ -3,7 +3,7 @@
   <!-- Banners -->
 @include('frontend.partials.banner')
   <!-- /Banners -->
-
+ {!! Toastr::message() !!}
   <!-- Resent Cat-->
   <section class="section-padding gray-bg">
     <div class="container">
@@ -33,7 +33,7 @@
 
                     <div class="car-info-box">
                     <a href="{{route('vehicles_details',$v->id)}}">
-                      <img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive">
+                      <img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="height:200px;">
                     </a>
                 @endif
                 @php $i--; @endphp
