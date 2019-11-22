@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group checkbox">
                   <input type="checkbox" id="terms_agree" required="required" checked="">
-                  <label for="terms_agree">I Agree with <a href="#">Terms and Conditions</a></label>
+                  <label for="terms_agree">I Agree with <a href="{!! route('terms') !!}">Terms and Conditions</a></label>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">signup

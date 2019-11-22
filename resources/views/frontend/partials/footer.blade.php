@@ -9,10 +9,10 @@
 
 
           <li><a href="{{route('about_us')}}">About Us</a></li>
-            <li><a href="">FAQs</a></li>
-            <li><a href="">Privacy</a></li>
-          <li><a href="">Terms of use</a></li>
-               <li><a href="admin/home">Admin Login</a></li>
+            <li><a href="{!! route('faqs') !!}">FAQs</a></li>
+            <li><a href="{!! route('privacy') !!}">Privacy</a></li>
+          <li><a href="{!! route('terms') !!}">Terms of use</a></li>
+               <li><a href="{!! route('admin.login') !!}">Admin Login</a></li>
           </ul>
         </div>
 {{--

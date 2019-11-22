@@ -1,21 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
-use App\Admin;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Hash;
-use Auth;
+use App\Model\Message;
 
-class AdminController extends Controller
+class MessageController extends Controller
 {
-
-  public function __construct()
- {
-   $this->middleware('auth:admin');
- }
     /**
      * Display a listing of the resource.
      *
@@ -44,16 +37,31 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $this->validate($request, [
+        'name' => 'required|max:10',
+        'phone' => 'required',
+        'email' => 'required|email',
+        'message' => 'required|max:100',
+      
+      ]);
+          $message = new Message();
+          $message->name = $request->name;
+          $message->email = $request->email;
+          $message->phone = $request->phone;
+          $message->message = $request->message;
+          $message->save();
+          Toastr::success('Message has Send Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
+          return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
         //
     }
@@ -61,10 +69,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit($id)
     {
         //
     }
@@ -73,10 +81,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,23 +92,11 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
         //
-    }
-
-    public function passwordupdate(Request $r)
-    {
-      $this->validate($r, [
-        'password' => 'required|max:7|confirmed',
-      ]);
-        $admin = Auth::user();
-          $admin->password =  Hash::make($r->newpassword);
-          $admin->save();
-            Toastr::success('Password Updated..', 'Success', ["positionClass" => "toast-top-center"]);
-            return back();
     }
 }

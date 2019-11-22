@@ -20,12 +20,12 @@
       <li><a href="{!! route('admin.booking') !!}"><i class="fa fa-users"></i> Manage Booking</a></li>
 
       <li><a href="{!! route('admin.testimonieal') !!}"><i class="fa fa-table"></i> Manage Testimonials</a></li>
-      <li><a href=""><i class="fa fa-desktop"></i> Manage Conatctus Query</a></li>
-      <li><a href=""><i class="fa fa-users"></i> Reg Users</a></li>
-    <li><a href=""><i class="fa fa-files-o"></i> Manage Pages</a></li>
-    <li><a href=""><i class="fa fa-files-o"></i> Update Contact Info</a></li>
+      <li><a href="{!! route('viewmessage') !!}"><i class="fa fa-desktop"></i> Manage Message</a></li>
+      <li><a href="{!! route('reguserview') !!}"><i class="fa fa-users"></i> Reg Users</a></li>
+    <li><a href="{!! route('admin.pagecontent') !!}"><i class="fa fa-files-o"></i> Manage Pages</a></li>
+    <li><a href="{!! route('viewcontact') !!}"><i class="fa fa-files-o"></i> Update Contact Info</a></li>
 
-    <li><a href=""><i class="fa fa-table"></i> Manage Subscribers</a></li>
+  
 
     </ul>
   </nav>

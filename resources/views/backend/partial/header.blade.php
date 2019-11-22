@@ -6,7 +6,7 @@
 			<li class="ts-account">
 				<a href="#"><img src="{!! asset('admin/img/user.png') !!}" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
-					<li><a href="">Change Password</a></li>
+					<li><a href="{!! route('admin.password.chageview') !!}">Change Password</a></li>
 					<li >
 			    <a class="nav-link" href="">
 			      <form class="form-inline" action="{!! route('admin.logout') !!}" method="post">

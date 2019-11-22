@@ -155,7 +155,7 @@
 
          <li><a href="{{route('about_us')}}">About Us</a></li>
          <li><a href="{!! route('car_list') !!}">Car Listing</a>
-         <li><a href="#">FAQs</a></li>
+         <li><a href="{!! route('faqs') !!}">FAQs</a></li>
          <li><a href="{{route('contact_us')}}">Contact Us</a></li>
 
        </ul>

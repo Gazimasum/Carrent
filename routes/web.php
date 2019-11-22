@@ -13,6 +13,11 @@
 
 Route::get('/', 'Frontend\PagesController@index')->name('index');
 Route::get('/about_us', 'Frontend\PagesController@about_us')->name('about_us');
+Route::get('/privacy', 'Frontend\PagesController@privacy')->name('privacy');
+Route::get('/faqs', 'Frontend\PagesController@faqs')->name('faqs');
+Route::get('/terms', 'Frontend\PagesController@terms')->name('terms');
+Route::post('/message/store', 'Frontend\MessageController@store')->name('message');
+
 Route::get('/car_list', 'Frontend\PagesController@car_list')->name('car_list');
 Route::post('/search_vehicle', 'Frontend\VehicleController@search')->name('search_vehicle');
 Route::get('/search', 'Frontend\PagesController@search')->name('search');
@@ -37,6 +42,9 @@ Route::get('/index', 'HomeController@index')->name('home');
   Route::get('/login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
   Route::post('/login/submit', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
   Route::post('/logout/submit', 'Auth\Admin\LoginController@logout')->name('admin.logout');
+
+  Route::get('/change/password', 'Backend\PagesController@chngpassview')->name('admin.password.chageview');
+  Route::post('/change/password/update', 'Backend\AdminController@passwordupdate')->name('admin.password.update');
 
   // Password Email Send
     Route::get('/password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
@@ -76,6 +84,25 @@ Route::get('/index', 'HomeController@index')->name('home');
     Route::get('/testimonieal','Backend\TestimonielController@testimoniealview')->name('admin.testimonieal');
     Route::post('/testimonieal/active/{id}','Backend\TestimonielController@testimoniealactive')->name('admin.testimonieal.active');
     Route::post('/testimonieal/deactive/{id}','Backend\TestimonielController@testimoniealdeactive')->name('admin.testimonieal.deactive');
+
+//Pages Content
+
+  Route::get('/pagecontent','Backend\PagesController@pagecontent')->name('admin.pagecontent');
+  Route::post('/pagecontent/update','Backend\PagesController@pagescotentupdate')->name('admin.pagescotent.update');
+
+//users
+
+Route::get('/reguser','Backend\PagesController@reguser')->name('reguserview');
+  //messages
+
+  Route::get('/message','Backend\PagesController@viewmessage')->name('viewmessage');
+  Route::get('/message/seen/{id}','Backend\PagesController@seenmessage')->name('seenmessage');
+  // Route::get('/message','Backend\PagesController@viewmessage')->name('viewmessage');
+
+//contact_us
+
+    Route::get('/contact','Backend\PagesController@contactview')->name('viewcontact');
+    Route::post('/contact/{id}','Backend\PagesController@contactupdate')->name('updatecontact');
 });
 
 
@@ -93,4 +120,10 @@ Route::group(['prefix' => 'user'],function ()
   Route::get('/mytestimonial', 'Frontend\TestimonialController@index')->name('user.mytestimonial');
   Route::get('/posttestimonialview', 'Frontend\TestimonialController@view')->name('user.post_testimonial_view');
   Route::post('/testimonieal/post', 'Frontend\TestimonialController@store')->name('user.post_testimonial');
+});
+
+
+// API routes
+Route::get('get-pagedetails/{types}', function($types){
+  return json_encode(App\Model\Pagescontent::where('types', $types)->first());
 });

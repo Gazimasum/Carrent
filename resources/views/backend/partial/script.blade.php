@@ -52,3 +52,27 @@ function readURL(input) {
       }
   }
 </script>
+
+
+{{-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> --}}
+  <script>
+
+    $("#page_select").change(function(){
+        var types = $("#page_select").val();
+        // Send an ajax request to server with this division
+        $("#pgedetails").html("");
+        var option = "";
+        var url = "{{ url('/') }}";
+        $.get( url+"/get-pagedetails/"+types, function( data ) {
+            data = JSON.parse(data);
+
+
+          $("#pagedetails").html(data.details);
+          $("#pagetypes").html(data.pagesname);
+
+
+        });
+    })
+
+
+  </script>

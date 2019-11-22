@@ -26,10 +26,11 @@
         <h3>Get in touch using the form below</h3>
 
         <div class="contact_form gray-bg">
-          <form  method="post">
+          <form  method="post" action="{!! route('message') !!}">
+            @csrf
             <div class="form-group">
               <label class="control-label">Full Name <span>*</span></label>
-              <input type="text" name="fullname" class="form-control white_bg" id="fullname" required>
+              <input type="text" name="name" class="form-control white_bg" id="fullname" required>
             </div>
             <div class="form-group">
               <label class="control-label">Email Address <span>*</span></label>
@@ -37,7 +38,7 @@
             </div>
             <div class="form-group">
               <label class="control-label">Phone Number <span>*</span></label>
-              <input type="text" name="contactno" class="form-control white_bg" id="phonenumber" required>
+              <input type="text" name="phone" class="form-control white_bg" id="phonenumber" required>
             </div>
             <div class="form-group">
               <label class="control-label">Message <span>*</span></label>

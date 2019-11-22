@@ -17,11 +17,15 @@ class PagesController extends Controller
     $testimonial = Testimonial::where('status',1)->get();
  return view('frontend.pages.index',compact('vehicle','testimonial'));
   }
+
+
   public function about_us()
   {
     $about = Pagescontent::where('types','aboutus')->get();
     return view('frontend.pages.about_us',compact('about'));
   }
+
+
   public function car_list()
   {
     $vehicle=Vehicle::all();
@@ -29,6 +33,8 @@ class PagesController extends Controller
     $recentvehicle = Vehicle::orderby('id','desc')->get();
     return view('frontend.pages.carlisting',compact('vehicle','recentvehicle','vehiclecount'));
   }
+
+
   public function search(Request $request){
     $search=$request->search;
     $brand_id=0;
@@ -38,9 +44,6 @@ class PagesController extends Controller
     } else {
       $brand_id=0;
     }
-
-
-
     $vehicle = Vehicle::orWhere('VehiclesTitle','like','%'.$search.'%')
     ->orWhere('VehiclesBrand',$brand_id)
     ->orWhere('FuelType','like','%'.$search.'%')
@@ -57,5 +60,21 @@ class PagesController extends Controller
     ->count();
 
     return view('frontend.pages.carlisting',compact('vehicle','recentvehicle','vehiclecount'));
+  }
+
+  public function privacy()
+  {
+    $privacy = Pagescontent::where('types','privacy')->get();
+    return view('frontend.pages.privecy',compact('privacy'));
+  }
+  public function faqs()
+  {
+    $faqs = Pagescontent::where('types','faqs')->get();
+    return view('frontend.pages.faqs',compact('faqs'));
+  }
+  public function terms()
+  {
+    $terms = Pagescontent::where('types','terms')->get();
+    return view('frontend.pages.terms',compact('terms'));
   }
 }
