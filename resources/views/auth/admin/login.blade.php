@@ -48,6 +48,13 @@
 									<button class="btn btn-primary btn-block" name="login" type="submit">LOGIN</button>
 
 								</form>
+
+
+						
+										<a class="btn btn-link" href="{{ route('admin.password.request') }}">
+											Forgot Your Password?
+										</a>
+
 							</div>
 						</div>
 					</div>

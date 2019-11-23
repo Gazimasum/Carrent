@@ -1,7 +1,14 @@
 @extends('frontend.layouts.master')
 @section('content')
   <!-- Banners -->
+  @if (session('status'))
+      <div class="alert alert-success" role="alert">
+          {{ session('status') }}
+      </div>
+
+  @endif
 @include('frontend.partials.banner')
+
   <!-- /Banners -->
  {!! Toastr::message() !!}
   <!-- Resent Cat-->

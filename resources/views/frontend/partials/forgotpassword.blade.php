@@ -1,16 +1,4 @@
 
-  <script type="text/javascript">
-function valid()
-{
-if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
-{
-alert("New Password and Confirm Password Field do not match  !!");
-document.chngpwd.confirmpassword.focus();
-return false;
-}
-return true;
-}
-</script>
 <div class="modal fade" id="forgotpassword">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -20,25 +8,38 @@ return true;
         <h3 class="modal-title">Password Recovery</h3>
       </div>
       <div class="modal-body">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="row">
           <div class="forgotpassword_wrap">
             <div class="col-md-12">
-              <form name="chngpwd" method="post" onSubmit="return valid();">
-                <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Your Email address*" required="">
-                </div>
-  <div class="form-group">
-                  <input type="text" name="mobile" class="form-control" placeholder="Your Reg. Mobile*" required="">
-                </div>
-  <div class="form-group">
-                  <input type="password" name="newpassword" class="form-control" placeholder="New Password*" required="">
-                </div>
-  <div class="form-group">
-                  <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password*" required="">
-                </div>
-                <div class="form-group">
-                  <input type="submit" value="Reset My Password" name="update" class="btn btn-block">
-                </div>
+              <form method="POST" action="{{ route('password.email') }}">
+                  @csrf
+
+                  <div class="form-group row">
+                      <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                      <div class="col-md-6">
+                          <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                          @error('email')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                      </div>
+                  </div>
+
+                  <div class="form-group row mb-0">
+                      <div class="col-md-6 offset-md-4">
+                          <button type="submit" class="btn btn-primary">
+                              {{ __('Send Password Reset Link') }}
+                          </button>
+                      </div>
+                  </div>
               </form>
               <div class="text-center">
                 <p class="gray_text">For security reasons we don't store your password. Your password will be reset and a new one will be send.</p>

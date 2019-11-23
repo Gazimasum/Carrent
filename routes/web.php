@@ -32,11 +32,13 @@ Route::post('booking/{id}','Frontend\BookingController@store')->name('booking');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/index', 'HomeController@index')->name('home');
 
 
 //Admin Route
   Route::group(['prefix' => 'admin'],function(){
+
   Route::get('/home', 'Backend\PagesController@index')->name('admin.index');
   // Admin Login Routes
   Route::get('/login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
@@ -116,6 +118,17 @@ Route::group(['prefix' => 'user'],function ()
   Route::post('/ profile/update','Frontend\UsersController@update')->name('profile.update');
   Route::get('/ profile/updatepassword','Frontend\UsersController@updatepasswordview')->name('profile.update.password');
   Route::post('/ profile/ update/ password','Frontend\UsersController@updatepassword')->name('profile.updatepassword');
+
+
+    // Password Email Send
+      Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+      Route::post('/password/resetPost', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
+
+      // Password Reset
+      Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('user.password.reset');
+      Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('user.password.reset.post');
+
+
   Route::get('/token/{token}', 'Frontend\VerficationController@verify')->name('user.verification');
   Route::get('/mytestimonial', 'Frontend\TestimonialController@index')->name('user.mytestimonial');
   Route::get('/posttestimonialview', 'Frontend\TestimonialController@view')->name('user.post_testimonial_view');
