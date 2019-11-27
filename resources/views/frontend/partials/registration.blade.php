@@ -13,20 +13,20 @@
               <form method="POST" action="{{ route('register') }}">
                   @csrf
                 <div class="form-group">
-                  <input type="text" class="form-control" name="name" placeholder="Full Name" required="required">
+                  <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" placeholder="Full Name" required="required"  value="{{ old('name') }}">
                 </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" name="phone" placeholder="Mobile Number" maxlength="13" required="required">
+                  <input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone" placeholder="Mobile Number" maxlength="13" required="required"  value="{{ old('phone') }}">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" name="email" id="emailid" onBlur="checkAvailability()" placeholder="Email Address" required="required">
+                  <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="emailid" onBlur="checkAvailability()" placeholder="Email Address" required="required"  value="{{ old('email') }}">
                    <span id="user-availability-status" style="font-size:12px;"></span>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"  name="password" placeholder="Password" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required="required">
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
                 <div class="form-group checkbox">
                   <input type="checkbox" id="terms_agree" required="required" checked="">

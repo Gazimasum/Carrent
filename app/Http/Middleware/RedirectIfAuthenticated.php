@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
 
        case 'web':
        if (Auth::guard($guard)->check()) {
-           return redirect('user.dashboard');
+           return redirect('index');
        }
 
          break;

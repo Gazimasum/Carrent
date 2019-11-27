@@ -18,6 +18,7 @@
   									<thead>
   										<tr>
   											<th>Name</th>
+  											<th>Email</th>
   											<th>Vehicle</th>
   											<th>From Date</th>
   											<th>To Date</th>
@@ -31,6 +32,7 @@
   										<tr>
 
   										<th>Name</th>
+  										<th>Email</th>
   											<th>Vehicle</th>
   											<th>From Date</th>
   											<th>To Date</th>
@@ -44,6 +46,7 @@
                       @foreach ($booking as $bk)
   										<tr>
   											<td>{{$bk->user->name}}</td>
+  											<td>{{$bk->user->email}}</td>
   											<td><a href="{!! route('vehicles_details',$bk->vehicle->id) !!}" target="_blank">{{$bk->vehicle->VehiclesTitle}}</td>
   											<td>{{$bk->from_date}}</td>
   											<td>{{$bk->to_date}}</td>

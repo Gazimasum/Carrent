@@ -34,40 +34,42 @@
 
               <div class="col-list-3">
               <div class="recent-car-list">
-                @php $i=1; @endphp
-                @foreach($v->Vimage as $image)
-                @if($i>0)
 
                     <div class="car-info-box">
                     <a href="{{route('vehicles_details',$v->id)}}">
-                      <img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="height:200px;">
+                      <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="">
                     </a>
-                @endif
-                @php $i--; @endphp
-                @endforeach
 
-              {{-- <div class="car-info-box"> <a href=""><img src="admin/img/vehicleimages/{{$v->image}}" class="img-responsive" alt="image"></a> --}}
               <ul>
               <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}}</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i> Model : {{$v->VehiclesTitle}}</li>
+              <li><i class="fa fa-calendar" aria-hidden="true"></i> Model : {{$v->ModelYear}}</li>
               <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
               </ul>
               </div>
               <div class="car-title-m">
-              <h6><a href=""></a>{{$v->Brand()}}</h6>
+              <h6><a href="{{route('vehicles_details',$v->id)}}">{{$v->VehiclesTitle}}</a></h6>
+              {{-- <h6><a href="{{route('vehicles_details',$v->id)}}"></a></h6> --}}
               <span class="price">$ {{$v->PricePerDay}} /Day</span>
               </div>
               <div class="inventory_info_m">
-              <p>{{$v->VehiclesOverview,0,50}}</p>
+
+              <p>{{str_limit($v->VehiclesOverview, $limit = 200, $end = '...')}}</p>
               </div>
               </div>
                  </div>
       @endforeach
 
         </div>
+
       </div>
+
+    </div>
+    <div class="mt-4 pagination">
+      {{ $vehicle->links() }}
+
     </div>
   </section>
+
   <!-- /Resent Cat -->
 
   <!-- Fun Facts-->

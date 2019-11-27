@@ -10,7 +10,7 @@
   <section id="listing_img_slider">
 
         @foreach($vehicle->Vimage as $image)
-    <div><img src="{{asset('admin/img/vehicleimages/'. $image->image)}}" class="img-responsive" alt="image" width="900" height="560"></div>
+    <div><img src="{{asset('images/vehicle/'. $image->image)}}" class="img-responsive" alt="image" width="700" height="560"></div>
       @endforeach
 
   </section>
@@ -259,13 +259,13 @@
 
           <div class="col-md-3 grid_listing">
             <div class="product-listing-m gray-bg">
-              @php $i=1; @endphp
+              {{-- @php $i=1; @endphp
               @foreach($v->Vimage as $image)
-              @if($i>0)
-              <div class="product-listing-img"> <a href="{{route('vehicles_details',$v->id)}}"><img src="{{asset('admin/img/vehicleimages/'.$image->image)}}"class="img-responsive" alt="image" /> </a>
-              @endif
+              @if($i>0) --}}
+              <div class="product-listing-img"> <a href="{{route('vehicles_details',$v->id)}}"><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}"class="img-responsive" alt="image" /> </a>
+              {{-- @endif
               @php $i--; @endphp
-              @endforeach
+              @endforeach --}}
               </div>
               <div class="product-listing-content">
                 <h5><a href="{{route('vehicles_details',$v->id)}}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>

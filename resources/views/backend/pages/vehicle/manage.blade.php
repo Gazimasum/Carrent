@@ -18,6 +18,7 @@
                         <tr>
 
                           <th>Vehicle Title</th>
+                          <th>Image</th>
                           <th>Brand </th>
                           <th>Price Per day</th>
                           <th>Fuel Type</th>
@@ -29,6 +30,7 @@
                         <tr>
 
                         <th>Vehicle Title</th>
+                        <th>Image</th>
                           <th>Brand </th>
                           <th>Price Per day</th>
                           <th>Fuel Type</th>
@@ -42,6 +44,7 @@
                         <tr>
 
                           <td>{{$v->VehiclesTitle}}</td>
+                          <td><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" style="height:100px;width:100px;"alt=""></td>
                           <td>{{$v->Brand()}}</td>
                           <td>{{$v->PricePerDay}}</td>
                           <td>{{$v->FuelType}}</td>

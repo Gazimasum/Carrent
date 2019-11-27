@@ -95,6 +95,10 @@
           @endforeach
               </ul>
             </div>
+            <div class="mt-4 pagination">
+              {{ $booking->links() }}
+
+            </div>
           </div>
         </div>
       </div>

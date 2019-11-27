@@ -92,15 +92,49 @@ class AdminController extends Controller
         //
     }
 
-    public function passwordupdate(Request $r)
-    {
-      $this->validate($r, [
-        'password' => 'required|max:7|confirmed',
-      ]);
-        $admin = Auth::user();
-          $admin->password =  Hash::make($r->newpassword);
-          $admin->save();
-            Toastr::success('Password Updated..', 'Success', ["positionClass" => "toast-top-center"]);
-            return back();
+  //   public function passwordupdate(Request $request)
+  //   {
+  //     $this->validate($request, [
+  //       // 'oldpassword' => 'required',
+  //       'password' => 'required|max:7|confirmed',
+  //     ]);
+  //   //     $admin = Auth::admin();
+  //   //     $a= Admin::find($admin->id);
+  //   //     $oldpass=Hash::make($r->oldpassword);
+  //   //     if($a->password==$oldpass){
+  //   //       $a->password =  Hash::make($r->newpassword);
+  //   //       $a->update();
+  //   //         Toastr::success('Password Updated..', 'Success', ["positionClass" => "toast-top-center"]);
+  //   //         return back();
+  //   // }
+  //
+  //   $admin = Auth::user();
+  //   if ($request->password != NULL || $request->password != "") {
+  //     $admin->password = Hash::make($request->password);
+  //   }
+  //   $admin->save();
+  //   session()->flash('success', 'Password Change Successfully...');
+  // return redirect('/admin/home');
+  // }
+
+  public function adminupdateview()
+  {
+
+    return view('backend.pages.profileupdate');
+  }
+
+  public function profileUpdate(Request $request)
+  {
+    $this->validate($request, [
+        //'oldpassword' => 'required',
+          'password' => 'required|min:7|confirmed',
+        ]);
+    $admin = Auth::user();
+    if ($request->password != NULL || $request->password != "") {
+      $admin->password = Hash::make($request->password);
     }
+    $admin->save();
+    Toastr::success('Password Change Successfully...', 'Success', ["positionClass" => "toast-top-center"]);
+    return redirect('/admin/home');
+  }
 }

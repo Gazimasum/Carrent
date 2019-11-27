@@ -9,8 +9,8 @@ class Booking extends Model
 {
   public static function totalbooking()
   {
-  $totaluser=Booking::count();
-  return $totaluser;
+  $totalbook=Booking::count();
+  return $totalbook;
   }
 //   public function Vehicle(){
 //   return Vehicle::where('id',$this->vehicle_id)->first();
@@ -22,4 +22,10 @@ public function user(){
   return $this->belongsTo(User::class);
 }
 
+
+public static function totalnewbook()
+{
+$totalbook = Booking::where('status',0)->count();
+return $totalbook;
+}
 }

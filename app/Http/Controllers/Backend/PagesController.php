@@ -13,6 +13,7 @@ use App\Model\Booking;
 use App\Model\Pagescontent;
 use App\Model\Message;
 use App\Model\Contact;
+use Auth;
 
 
 class PagesController extends Controller
@@ -23,7 +24,8 @@ class PagesController extends Controller
  }
 
  public function index(){
-   return view('backend.pages.index');
+   $admin = Auth::user();
+   return view('backend.pages.index',compact('admin'));
  }
  public function createbrand()
  {
@@ -38,8 +40,15 @@ class PagesController extends Controller
 
  public function editbrand($id)
  {
-   $brands = Brand::find($id);
-   return view('backend.pages.brands.edit',compact('brands'));
+    $brands = Brand::find($id);
+   if ($brands!=null) {
+     return view('backend.pages.brands.edit',compact('brands'));
+   }
+   else {
+     Toastr::error('Brand has not Found ..', 'Error', ["positionClass" => "toast-top-center"]);
+     return back();
+   }
+
  }
 
  public function createvehicle()
@@ -50,13 +59,20 @@ class PagesController extends Controller
  public function editvehicle($id)
  {
    $vehicles=Vehicle::find($id);
-   $brands=Brand::all();
-   return view('backend.pages.vehicle.edit',compact('vehicles','brands'));
+   if ($vehicles!=null) {
+     $brands=Brand::get();
+     return view('backend.pages.vehicle.edit',compact('vehicles','brands'));
+   }
+   else {
+     Toastr::error('Vehicle has not Found ..', 'Error', ["positionClass" => "toast-top-center"]);
+     return back();
+   }
+
  }
  public function bookingview()
  {
 
-   $booking=Booking::all();
+   $booking=Booking::orderby('id','desc')->get();
    return view('backend.pages.managebooking',compact('booking'));
  }
 

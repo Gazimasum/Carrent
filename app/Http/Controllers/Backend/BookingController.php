@@ -11,13 +11,18 @@ use App\User;
 
 class BookingController extends Controller
 {
+  public function __construct()
+ {
+   $this->middleware('auth:admin');
+ }
+
     public function confirm($id)
     {
       $booking = Booking::find($id);
       $booking->status=1;
 
       if ($booking->save()) {
-        $user = User::find($booking->user_id)->first();
+        $user = User::find($booking->user_id);
           $user->notify(new BookingConfirmNotification);
           Toastr::success('Notification Send To Customer....', 'Success', ["positionClass" => "toast-top-center"]);
         return back();

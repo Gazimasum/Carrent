@@ -9,6 +9,12 @@ use Brian2694\Toastr\Facades\Toastr;
 
 class BrandController extends Controller
 {
+
+
+  public function __construct()
+ {
+   $this->middleware('auth:admin');
+ }
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +57,7 @@ class BrandController extends Controller
      // session()->flash('success',('A New Brand Added Successfully..'));
    Toastr::success('A New Brand Added Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
     //  Toastr::success('message', 'Category add successfully!');
-     return back();
+     return redirect()->route('admin.brand.manage');
     }
 
     /**
@@ -101,7 +107,7 @@ class BrandController extends Controller
          $brand->save();
 
        Toastr::success('Brand has updated Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
-       return back();
+      return redirect()->route('admin.brand.manage');
        }
 
     /**

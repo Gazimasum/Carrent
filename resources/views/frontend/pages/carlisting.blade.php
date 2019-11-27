@@ -35,14 +35,10 @@
 
 @foreach($vehicle as $v)
         <div class="product-listing-m gray-bg">
-					@php $i=1; @endphp
-					@foreach($v->Vimage as $image)
-					@if($i>0)
-          <div class="product-listing-img"><img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" class="img-responsive" alt="Image" /> </a>
+
+          <div class="product-listing-img"><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" class="img-responsive" alt="Image" /> </a>
           </div>
-				 @endif
-						@php $i--; @endphp
-						@endforeach
+
           <div class="product-listing-content">
             <h5><a href="vehical-details/">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
             <p class="list-price">${{$v->PricePerDay}} Per Day</p>
@@ -70,20 +66,20 @@
                 <select class="form-control" name="brand">
                   <option>Select Brand</option>
 
-    @foreach ($vehicle as $v)
+                    @foreach ($vehicle as $v)
 
 
-<option value="{{$v->id}}">{{$v->Brand()}}</option>
-@endforeach
+                      <option value="{{$v->id}}">{{$v->Brand()}}</option>
+                    @endforeach
 
                 </select>
               </div>
               <div class="form-group select">
                 <select class="form-control" name="fueltype">
                   <option>Select Fuel Type</option>
-<option value="Petrol">Petrol</option>
-<option value="Diesel">Diesel</option>
-<option value="CNG">CNG</option>
+                  <option value="Petrol">Petrol</option>
+                  <option value="Diesel">Diesel</option>
+                  <option value="CNG">CNG</option>
                 </select>
               </div>
 
@@ -103,25 +99,32 @@
 						@foreach ($recentvehicle as $rv)
 
               <li class="gray-bg">
-								@php $i=1; @endphp
-								@foreach($rv->Vimage as $image)
-								@if($i>0)
-                <div class="recent_post_img"> <a href="{{route('vehicles_details',$v->id)}}"><img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" alt="image"></a> </div>
-							@endif
-								 @php $i--; @endphp
-								 @endforeach
-							  <div class="recent_post_title"> <a href="{{route('vehicles_details',$v->id)}}">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
+
+                <div class="recent_post_img"> <a href="{{route('vehicles_details',$rv->id)}}"><img src="{{ asset('images/vehicle/mainimages/'. $rv->mainimage->image) }}" alt="image"></a> </div>
+
+							  <div class="recent_post_title"> <a href="{{route('vehicles_details',$rv->id)}}">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
                   <p class="widget_price">${{$rv->PricePerDay}} Per Day</p>
                 </div>
               </li>
             @endforeach
             </ul>
+            <div class="mt-4 pagination">
+              {{ $recentvehicle->links() }}
+
+            </div>
           </div>
         </div>
+
       </aside>
       <!--/Side-Bar-->
+
+          <div class="mt-4 pagination">
+            {{ $vehicle->links() }}
+
+          </div>
     </div>
   </div>
+
 </section>
 <!-- /Listing-->
 @endsection

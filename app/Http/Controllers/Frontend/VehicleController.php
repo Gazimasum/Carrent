@@ -90,9 +90,9 @@ class VehicleController extends Controller
     {
       $type = $r->fueltype;
       $brand = $r->brand;
-      $vehicle = Vehicle::where('VehiclesBrand',$brand)->where('FuelType',$type)->get();
+      $vehicle = Vehicle::where('VehiclesBrand',$brand)->where('FuelType',$type)->paginate(6);
       $vehiclecount=Vehicle::where('VehiclesBrand',$brand)->where('FuelType',$type)->count();
-      $recentvehicle = Vehicle::orderby('id','desc')->get();
+      $recentvehicle = Vehicle::orderby('id','desc')->paginate(3);
       if ($vehiclecount!=null) {
           return view('frontend.pages.carlisting')->with('vehicle', $vehicle)->with('recentvehicle', $recentvehicle)->with('vehiclecount', $vehiclecount);
       }

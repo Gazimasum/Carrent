@@ -120,7 +120,7 @@ if ($booking->save()) {
     public function mybooking()
     {
       $user = Auth::user();
-     $booking = Booking::where('user_id',$user->id)->get();
+     $booking = Booking::where('user_id',$user->id)->paginate(4);
      return view('frontend.pages.users.my_booking',compact('booking','user'));
     }
 }

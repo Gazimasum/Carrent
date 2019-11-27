@@ -45,9 +45,14 @@ Route::get('/index', 'HomeController@index')->name('home');
   Route::post('/login/submit', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
   Route::post('/logout/submit', 'Auth\Admin\LoginController@logout')->name('admin.logout');
 
-  Route::get('/change/password', 'Backend\PagesController@chngpassview')->name('admin.password.chageview');
-  Route::post('/change/password/update', 'Backend\AdminController@passwordupdate')->name('admin.password.update');
+  Route::get('/change/password', 'Backend\AdminController@adminupdateview')->name('admin.password.chageview');
+  // Route::post('/change/password/update', 'Backend\AdminController@passwordupdate')->name('admin.password.update');
+  Route::post('/change/password/update', 'Backend\AdminController@profileUpdate')->name('admin.password.update');
 
+  //admin registration
+  Route::get('/register', 'Auth\Admin\RegisterController@showRegistrationForm')->name('adminregisterview');
+  Route::post('/register/submit', 'Auth\Admin\RegisterController@adminregister')->name('admin.register');
+    Route::get('/token/{token}', 'Backend\VerficationController@verify')->name('admin.verification');
   // Password Email Send
     Route::get('/password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/resetPost', 'Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -71,6 +76,7 @@ Route::get('/index', 'HomeController@index')->name('home');
     Route::get('/manage/vehicle/{id}','Backend\PagesController@editvehicle')->name('admin.vehicle.edit');
     Route::post('/manage/vehicle/update/{id}','Backend\VehicleController@update')->name('admin.vehicle.update');
     Route::post('/manage/vehicle/delete/{id}','Backend\VehicleController@delete')->name('admin.vehicle.delete');
+    Route::post('/manage/vehicle/changemainimage/{id}','Backend\VehicleController@changemainimage')->name('admin.vehicle.mainimage');
     Route::post('/manage/vehicle/changeimage/{id}','Backend\VehicleController@changeimage')->name('admin.vehicle.image');
 
 //bookings

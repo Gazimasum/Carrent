@@ -16,12 +16,17 @@
 									<div class="panel-body">
 										<form method="post" name="chngpwd" class="form-horizontal" action="{!! route('admin.password.update') !!}">
                       @csrf
-
-
+											<div class="form-group">
+												<label class="col-sm-4 control-label">Old Password</label>
+												<div class="col-sm-8">
+													<input type="password" class="form-control" name="oldpassword" id="oldpassword" required>
+												</div>
+											</div>
+											<div class="hr-dashed"></div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">New Password</label>
 												<div class="col-sm-8">
-													<input type="password" class="form-control" name="newpassword" id="newpassword" required>
+													<input type="password" class="form-control" name="password" id="newpassword" required>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
@@ -33,12 +38,8 @@
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
-
-
-
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
-
 													<button class="btn btn-primary" name="submit" type="submit">Save changes</button>
 												</div>
 											</div>

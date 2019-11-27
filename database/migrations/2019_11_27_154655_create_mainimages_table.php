@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVimagesTable extends Migration
+class CreateMainimagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateVimagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vimages', function (Blueprint $table) {
+        Schema::create('mainimages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('vehicle_id')->unsigned()->index();;;
+            $table->bigInteger('vehicle_id')->unsigned()->index();
             $table->string('image');
             $table->foreign('vehicle_id')
             ->references('id')->on('vehicles')
             ->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ class CreateVimagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vimages');
+        Schema::dropIfExists('mainimages');
     }
 }

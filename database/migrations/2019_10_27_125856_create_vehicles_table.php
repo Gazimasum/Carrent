@@ -14,10 +14,10 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-                        $table->increments('id');
+                        $table->bigIncrements('id');
                         $table->String('VehiclesTitle');
                         $table->unsignedInteger('VehiclesBrand');
-                        $table->String('VehiclesOverview');
+                        $table->text('VehiclesOverview');
                         $table->String('PricePerDay');
                         $table->String('FuelType');
                         $table->String('ModelYear');

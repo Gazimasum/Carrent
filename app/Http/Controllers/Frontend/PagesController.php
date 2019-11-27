@@ -13,7 +13,7 @@ class PagesController extends Controller
 {
   public function index()
   {
-    $vehicle = Vehicle::all();
+    $vehicle = Vehicle::inRandomOrder()->paginate(6);
     $testimonial = Testimonial::where('status',1)->get();
  return view('frontend.pages.index',compact('vehicle','testimonial'));
   }
@@ -28,9 +28,9 @@ class PagesController extends Controller
 
   public function car_list()
   {
-    $vehicle=Vehicle::all();
+    $vehicle=Vehicle::paginate(6);
     $vehiclecount=Vehicle::all()->count();
-    $recentvehicle = Vehicle::orderby('id','desc')->get();
+    $recentvehicle = Vehicle::orderby('id','desc')->paginate(3);
     return view('frontend.pages.carlisting',compact('vehicle','recentvehicle','vehiclecount'));
   }
 
@@ -49,9 +49,9 @@ class PagesController extends Controller
     ->orWhere('FuelType','like','%'.$search.'%')
     ->orWhere('PricePerDay','like','%'.$search.'%')
     ->orderBy('id','desc')
-    ->get();
+    ->paginate(6);
 
-    $recentvehicle = Vehicle::orderby('id','desc')->get();
+    $recentvehicle = Vehicle::orderby('id','desc')->paginate(6);
 
     $vehiclecount = Vehicle::orWhere('VehiclesTitle','like','%'.$search.'%')
     ->orWhere('VehiclesBrand',$brand_id)

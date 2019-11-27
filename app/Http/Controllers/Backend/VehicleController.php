@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Model\Brand;
 use App\Model\Vehicle;
+use App\Model\Mainimage;
 use App\Model\Vimage;
 use Image;
+use File;
 
 
 class VehicleController extends Controller
 {
+
+
+  public function __construct()
+ {
+   $this->middleware('auth:admin');
+ }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -46,16 +56,18 @@ class VehicleController extends Controller
       $this->validate($request,
          ['vehicletitle' => 'required',
          'brandname' => 'required',
-         'vehicleoverview' => 'required|max:255',
+         'vehicleoverview' => 'required|max:500',
          'priceperday'=>'required',
         'fueltype'=>'required',
         'modelyear'=>'required',
+        'filename'=>'required',
+        'image' =>'required',
         'filename'=>'required',
 
        ],
        [
        'vehicletitle.required'=>"Please Provide a Title Name.",
-       'vehicleoverview.max'=>"Please Provide maximum 250 word.",
+       'vehicleoverview.max'=>"Please Provide maximum 500 word.",
      ]);
 
      $v=new Vehicle();
@@ -133,15 +145,51 @@ class VehicleController extends Controller
         $v->leatherseats = 0;
      $v->save();
 
+     // if ($request->image!=>null) {
+     //
+     //    // $image= $request->file('user_image');
+     //     $img=time().'.'.$image->getClientOriginalExtension();
+     //     $location= public_path('images/vehicle/mainimages/'.$img);
+     //     Image::make($image)->save($location);
+     //     $image_resize->resize(300, 300);
+     //     $mainimage = new Mainimage;
+     //     $mainimage->vehicle_id = $v->id;
+     //     $mainimage->image= $img;
+     //     $mainimage->save();
+     //
+     // }
+
+     if($request->hasFile('image')) {
+
+         $image       = $request->file('image');
+         $filename    = time().'.'.$image->getClientOriginalExtension();
+
+         $image_resize = Image::make($image->getRealPath());
+         // $image_resize->resize(200, 400);
+         $image_resize->save(public_path('images/vehicle/mainimages/' .$filename));
+         $mainimage = new Mainimage;
+         $mainimage->vehicle_id = $v->id;
+         $mainimage->image= $filename;
+         $mainimage->save();
+
+     }
+
+
      if (count($request->filename)>0) {
        foreach ($request->filename as $image) {
         // $image= $request->file('user_image');
-         $img=time().'.'.$image->getClientOriginalExtension();
-         $location= public_path('admin/img/vehicleimages/'.$img);
-         Image::make($image)->save($location);
+         // $img=time().'.'.$image->getClientOriginalExtension();
+         // $location= public_path('images/vehicle/'.$img);
+         // Image::make($image)->save($location);
+
+         //$image       = $request->file('image');
+         $filename    = time().'.'.$image->getClientOriginalExtension();
+         $image_resize = Image::make($image->getRealPath());
+         $image_resize->resize(700, 560);
+         $image_resize->save(public_path('images/vehicle/' .$filename));
          $vimage = new Vimage;
          $vimage->vehicle_id = $v->id;
-         $vimage->image= $img;
+         $vimage->image= $filename;
          $vimage->save();
        }
      }
@@ -150,7 +198,7 @@ class VehicleController extends Controller
      // session()->flash('success',('A New Brand Added Successfully..'));
    Toastr::success('A New Vehicle Added Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
     //  Toastr::success('message', 'Category add successfully!');
-     return back();
+      return redirect()->route('admin.vehicle.manage');
     }
 
     /**
@@ -185,7 +233,7 @@ class VehicleController extends Controller
     public function update(Request $request, $id)
     {
       $v=Vehicle::find($id);
-
+      if($v!=null){
       $v->vehiclestitle=$request->vehicletitle;
       $v->vehiclesbrand=$request->brandname;
       $v->vehiclesoverview=$request->vehicleoverview;
@@ -258,10 +306,16 @@ class VehicleController extends Controller
       $v->leatherseats = $request->leatherseats;
       else
          $v->leatherseats = 0;
-      $v->save();
+      $v->update();
+
 
         Toastr::success('Vehicle has updated Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
-        return back();
+        return redirect()->route('admin.vehicle.manage');
+      }
+        else {
+          Toastr::error('Vehicle has not Found ..', 'Error', ["positionClass" => "toast-top-center"]);
+          return back();
+        }
     }
 
     /**
@@ -277,35 +331,66 @@ class VehicleController extends Controller
 
     public function delete($id){
 
-          $vehicle=Vehicle::find($id);
-          if (!Is_null($vehicle)) {
+            $vehicle=Vehicle::find($id);
 
-            $vehicle->delete();
-          }
+            $filename = $vehicle->mainimage->image;
+            if(File::exists('images/vehicle/mainimages/'.$filename)){
+              File::delete('images/vehicle/mainimages/'.$filename);
+            }
+              // $mainimage->delete();
            foreach ($vehicle->Vimage as $img) {
               // code...
-
             $file_name=$img->image;
-            if (file_exists("admin/img/vehicleimages/".$file_name)) {
-              // code...
-              unlink("admin/img/vehicleimages/".$file_name);
+            if(File::exists('images/vehicle/'.$file_name)){
+              File::delete('images/vehicle/'.$file_name);
             }
-              $img->delete();
             }
-         // session()->flash('success','brand has deleted Successfully..');
+            if (!Is_null($vehicle)) {
+              $vehicle->delete();
+               }
+
+
           Toastr::success(' Vehicle Deleted Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
           return back();
-        }
+    }
 
+        public function changemainimage(Request $request,$id)
+        {
+
+          $vimage = Mainimage::find($id);
+
+          if(File::exists('images/vehicle/mainimages/'.$vimage->image)){
+            File::delete('images/vehicle/mainimages/'.$vimage->image);
+          }
+
+            $image=$request->mainimage;
+             // $image= $request->file('user_image');
+              $img=time().'.'.$image->getClientOriginalExtension();
+              $location= public_path('images/vehicle/mainimages/'.$img);
+              Image::make($image)->save($location);
+
+
+              $vimage->image= $img;
+              $vimage->save();
+              Toastr::success('Mainimage Image Changes Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
+              return back();
+
+        }
         public function changeimage(Request $request,$id)
         {
 
             $image=$request->image;
              // $image= $request->file('user_image');
               $img=time().'.'.$image->getClientOriginalExtension();
-              $location= public_path('admin/img/vehicleimages/'.$img);
-              Image::make($image)->save($location);
+              $image_resize = Image::make($image->getRealPath());
+              $image_resize->resize(700, 560);
+              $image_resize->save(public_path('images/vehicle/' .$img));
               $vimage = Vimage::find($id);
+
+              if(File::exists('images/vehicle/'.$vimage->image)){
+                File::delete('images/vehicle/'.$vimage->image);
+              }
+
               $vimage->image= $img;
               $vimage->save();
               Toastr::success(' Image Changes Successfully..', 'Success', ["positionClass" => "toast-top-center"]);

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Notifications\VerifyRegistration;
@@ -11,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 class RegisterController extends Controller
 {
     /*
@@ -24,16 +21,13 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/';
-
     /**
      * Create a new controller instance.
      *
@@ -43,7 +37,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -54,12 +47,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'phone'=>['required','min:11','max:15'],
+            'phone'=>['required','min:11','max:15','unique:users'],
             'email' => ['required', 'string', 'email:rfc', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:7', 'confirmed'],
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -68,6 +60,14 @@ class RegisterController extends Controller
      */
 protected function register(Request $request)
     {
+
+      $this->validate($request, [
+        'name' => 'required| string| max:255',
+        'phone'=>'required|min:11|max:15|unique:users',
+        'email' => 'required| string| email:rfc| max:255| unique:users',
+        'password' => 'required| string| min:7| confirmed',
+      ]);
+
 $random = Str::random(40);
   $userr=User::where('email',$request->email)->first();
   if (is_null($userr)) {
@@ -81,10 +81,8 @@ $random = Str::random(40);
             'remember_token'  =>str_random(50),
             'status'  => 0,
           ]);
-
           $user->notify(new VerifyRegistration($user));
 
-          
           Toastr::success('A confirmation email has sent to you.. Please check and confirm your email', 'success', ["positionClass" => "toast-top-center"]);
           return redirect('/');
         }
@@ -96,11 +94,5 @@ $random = Str::random(40);
       Toastr::warning('Email Already in Used..', 'warning', ["positionClass" => "toast-top-center"]);
     return redirect('/');
   }
-
-
-
     }
-
-
-
 }

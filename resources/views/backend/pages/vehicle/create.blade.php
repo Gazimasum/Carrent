@@ -20,7 +20,7 @@
                         <div class="form-group">
                         <label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
                         <div class="col-sm-4">
-                        <input type="text" name="vehicletitle" class="form-control" required>
+                        <input type="text" name="vehicletitle" class="form-control" required value="{{ old('vehicletitle') }}">
                         </div>
                         <label class="col-sm-2 control-label">Select Brand<span style="color:red">*</span></label>
                         <div class="col-sm-4">
@@ -46,7 +46,7 @@
                         <div class="form-group">
                         <label class="col-sm-2 control-label">Price Per Day(in USD)<span style="color:red">*</span></label>
                         <div class="col-sm-4">
-                        <input type="text" name="priceperday" class="form-control" required>
+                        <input type="text" name="priceperday" class="form-control" required value="{{ old('priceperday') }}">
                         </div>
                         <label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
                         <div class="col-sm-4">
@@ -64,30 +64,41 @@
                         <div class="form-group">
                         <label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
                         <div class="col-sm-4">
-                        <input type="text" name="modelyear" class="form-control" required>
+                        <input type="text" name="modelyear" class="form-control" required value="{{ old('modelyear') }}">
                         </div>
                         <label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
                         <div class="col-sm-4">
-                        <input type="text" name="seatingcapacity" class="form-control" required>
+                        <input type="text" name="seatingcapacity" class="form-control" value="{{ old('seatingcapacity') }}"  required>
                         </div>
                         </div>
                         <div class="hr-dashed"></div>
 
 
                         <div class="form-group">
-                        <div class="col-sm-12">
-                        <h4><b>Upload Images</b></h4>
+                          <div class="col-sm-12">
+                          <h4><b>Upload Main Image *</b></h4>
+                          </div>
                         </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-4">
+                           Main Image  <span style="color:red">*</span><input type="file" name="image"  required>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                          <h4><b>Upload Images</b></h4>
+                          </div>
                         </div>
 
 
                         <div class="form-group">
-                        <div class="col-sm-4">
-                        Image  <span style="color:red">*</span><input type="file" name="filename[]" multiple required>
+                          <div class="col-sm-4">
+                          Image  <span style="color:red">*</span><input type="file" name="filename[]" multiple required>
+                          </div>
                         </div>
 
-
-                        </div>
                         <div class="hr-dashed"></div>
                         </div>
                         </div>

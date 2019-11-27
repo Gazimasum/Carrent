@@ -26,10 +26,11 @@
   <label class="col-sm-2 control-label">Select Brand<span style="color:red">*</span></label>
   <div class="col-sm-4">
   <select class="selectpicker" name="brandname" required>
-  <option value="{{$vehicles->id}}">{{$vehicles->Brand()}} </option>
+  {{-- <option >{{$vehicles->Brand()}} </option> --}}
 
   @foreach ($brands as $b)
-    <option value="{{$b->id}}">{{$b->name}}</option>
+
+      <option value="{{ $b->id }}" {{ $vehicles->brand_id == $b->id ? 'selected' : '' }}>{{ $b->name }}</option>
   @endforeach
 
 
@@ -278,6 +279,30 @@
 
           <div class="row">
           <div class="col-md-12">
+
+            <div class="form-group">
+              <div class="panel panel-default">
+              <div class="panel-heading">Main Image Change</div>
+              <div class="panel-body">
+                <div class="col-sm-4">
+                  <div class="card" style="width: 18rem;">
+                <img src="{{asset('images/vehicle/mainimages/'. $vehicles->mainimage->image)}}" class="card-img-top img-responsive" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text"></p>
+                  <form class="" action="{!! route('admin.vehicle.mainimage',$vehicles->mainimage->id) !!}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input class="form-control" type="file" name="mainimage" >
+                      <button class="btn btn-primary form-control" name="submit" type="submit">Change Image</button>
+                  </form>
+
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>
+            </div>
+
           <div class="form-group">
             <div class="panel panel-default">
             <div class="panel-heading">Image Change</div>
@@ -286,7 +311,7 @@
           <div class="col-sm-4">
 
             <div class="card" style="width: 18rem;">
-          <img src="{{asset('admin/img/vehicleimages/'. $image->image)}}" class="card-img-top img-responsive" alt="...">
+          <img src="{{asset('images/vehicle/'. $image->image)}}" class="card-img-top img-responsive" alt="...">
           <div class="card-body">
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
