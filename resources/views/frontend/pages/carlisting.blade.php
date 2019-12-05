@@ -40,14 +40,14 @@
           </div>
 
           <div class="product-listing-content">
-            <h5><a href="vehical-details/">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
+            <h5><a href="{!! route('vehicles_details',$v->slug)!!}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
             <p class="list-price">${{$v->PricePerDay}} Per Day</p>
             <ul>
               <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
               <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$v->ModelYear}} model</li>
               <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}}</li>
             </ul>
-            <a href="{{route('vehicles_details',$v->id)}}" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            <a href="{{route('vehicles_details',$v->slug)}}" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
           </div>
         </div>
     @endforeach

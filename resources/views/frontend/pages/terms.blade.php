@@ -21,17 +21,17 @@
     <div class="container">
       <div  class="section-header text-center">
 
-  @foreach ($terms as $t)
-<h2>{{$t->pagesname}}</h2>
-<p>{{$t->details}}</p>
-{{-- @php
+          @foreach ($terms as $t)
+            <h2>{{$t->pagesname}}</h2>
+            <p>{{$t->details}}</p>
+        {{-- @php
 
-  echo $a->details ;
-@endphp --}}
-  @endforeach
+          echo $a->details ;
+        @endphp --}}
+          @endforeach
 
-</div>
-</div>
-</section>
+      </div>
+    </div>
+  </section>
 
 @endsection

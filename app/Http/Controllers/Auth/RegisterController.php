@@ -63,7 +63,7 @@ protected function register(Request $request)
 
       $this->validate($request, [
         'name' => 'required| string| max:255',
-        'phone'=>'required|min:11|max:15|unique:users',
+        'phone_no'=>'required|min:11|max:15|unique:users',
         'email' => 'required| string| email:rfc| max:255| unique:users',
         'password' => 'required| string| min:7| confirmed',
       ]);
@@ -71,11 +71,11 @@ protected function register(Request $request)
 $random = Str::random(40);
   $userr=User::where('email',$request->email)->first();
   if (is_null($userr)) {
-    $userr=User::where('phone_no',$request->phone)->first();
+    $userr=User::where('phone_no',$request->phone_no)->first();
     if (is_null($userr)) {
           $user = User::create([
             'name' => $request->name,
-            'phone_no' => $request->phone,
+            'phone_no' => $request->phone_no,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'remember_token'  =>str_random(50),

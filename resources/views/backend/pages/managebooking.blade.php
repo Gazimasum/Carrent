@@ -47,7 +47,7 @@
   										<tr>
   											<td>{{$bk->user->name}}</td>
   											<td>{{$bk->user->email}}</td>
-  											<td><a href="{!! route('vehicles_details',$bk->vehicle->id) !!}" target="_blank">{{$bk->vehicle->VehiclesTitle}}</td>
+  											<td><a href="{!! route('vehicles_details',$bk->vehicle->slug) !!}" target="_blank">{{$bk->vehicle->VehiclesTitle}}</td>
   											<td>{{$bk->from_date}}</td>
   											<td>{{$bk->to_date}}</td>
   											<td>{{$bk->message}}</td>

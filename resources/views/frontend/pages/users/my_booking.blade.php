@@ -58,7 +58,7 @@
                            <img src="" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="height:200px;">
                          </a> --}}
 
-                         <div class="vehicle_img"> <a href="{!! route('vehicles_details',$bk->vehicle_id) !!}"><img src="{{ asset('admin/img/vehicleimages/'. $image->image) }}" alt="image"></a> </div>
+                         <div class="vehicle_img"> <a href="{!! route('vehicles_details',$bk->vehicle_id) !!}"><img src="{{ asset('images/vehicle/'. $image->image) }}" alt="image"></a> </div>
 
                      @endif
                      @php $i--; @endphp

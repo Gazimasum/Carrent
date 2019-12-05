@@ -35,28 +35,28 @@
               <div class="col-list-3">
               <div class="recent-car-list">
 
-                    <div class="car-info-box">
-                    <a href="{{route('vehicles_details',$v->id)}}">
-                      <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="">
-                    </a>
+                  <div class="car-info-box">
+                        <a href="{{route('vehicles_details',$v->slug)}}">
+                          <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="">
+                        </a>
 
-              <ul>
-              <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}}</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i> Model : {{$v->ModelYear}}</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
-              </ul>
-              </div>
-              <div class="car-title-m">
-              <h6><a href="{{route('vehicles_details',$v->id)}}">{{$v->VehiclesTitle}}</a></h6>
-              {{-- <h6><a href="{{route('vehicles_details',$v->id)}}"></a></h6> --}}
-              <span class="price">$ {{$v->PricePerDay}} /Day</span>
-              </div>
-              <div class="inventory_info_m">
+                          <ul>
+                          <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}}</li>
+                          <li><i class="fa fa-calendar" aria-hidden="true"></i> Model : {{$v->ModelYear}}</li>
+                          <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
+                          </ul>
+                    </div>
+                    <div class="car-title-m">
+                        <h6><a href="{{route('vehicles_details',$v->slug)}}">{{$v->VehiclesTitle}}</a></h6>
+                        {{-- <h6><a href="{{route('vehicles_details',$v->id)}}"></a></h6> --}}
+                        <span class="price">$ {{$v->PricePerDay}} /Day</span>
+                    </div>
+                    <div class="inventory_info_m">
 
-              <p>{{str_limit($v->VehiclesOverview, $limit = 200, $end = '...')}}</p>
+                        <p>{{str_limit($v->VehiclesOverview, $limit = 200, $end = '...')}}</p>
+                    </div>
               </div>
-              </div>
-                 </div>
+           </div>
       @endforeach
 
         </div>
@@ -72,44 +72,44 @@
 
   <!-- /Resent Cat -->
 
-  <!-- Fun Facts-->
-  <section class="fun-facts-section">
-    <div class="container div_zindex">
-      <div class="row">
-        <div class="col-lg-3 col-xs-6 col-sm-3">
-          <div class="fun-facts-m">
-            <div class="cell">
-              <h2><i class="fa fa-calendar" aria-hidden="true"></i>40+</h2>
-              <p>Years In Business</p>
+          <!-- Fun Facts-->
+          <section class="fun-facts-section">
+            <div class="container div_zindex">
+              <div class="row">
+                <div class="col-lg-3 col-xs-6 col-sm-3">
+                  <div class="fun-facts-m">
+                    <div class="cell">
+                      <h2><i class="fa fa-calendar" aria-hidden="true"></i>40+</h2>
+                      <p>Years In Business</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xs-6 col-sm-3">
+                  <div class="fun-facts-m">
+                    <div class="cell">
+                      <h2><i class="fa fa-car" aria-hidden="true"></i>1200+</h2>
+                      <p>New Cars For Sale</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xs-6 col-sm-3">
+                  <div class="fun-facts-m">
+                    <div class="cell">
+                      <h2><i class="fa fa-car" aria-hidden="true"></i>1000+</h2>
+                      <p>Used Cars For Sale</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xs-6 col-sm-3">
+                  <div class="fun-facts-m">
+                    <div class="cell">
+                      <h2><i class="fa fa-user-circle-o" aria-hidden="true"></i>600+</h2>
+                      <p>Satisfied Customers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6 col-sm-3">
-          <div class="fun-facts-m">
-            <div class="cell">
-              <h2><i class="fa fa-car" aria-hidden="true"></i>1200+</h2>
-              <p>New Cars For Sale</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6 col-sm-3">
-          <div class="fun-facts-m">
-            <div class="cell">
-              <h2><i class="fa fa-car" aria-hidden="true"></i>1000+</h2>
-              <p>Used Cars For Sale</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6 col-sm-3">
-          <div class="fun-facts-m">
-            <div class="cell">
-              <h2><i class="fa fa-user-circle-o" aria-hidden="true"></i>600+</h2>
-              <p>Satisfied Customers</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- Dark Overlay-->
     <div class="dark-overlay"></div>
   </section>
@@ -125,22 +125,19 @@
       <div class="row">
         <div id="testimonial-slider">
 
-        @foreach ($testimonial as $testimonial)
-        <div class="testimonial-m">
-            <div class="testimonial-img"> <img src="{{asset('images/cat-profile.png')}}" alt="" /> </div>
-            <div class="testimonial-content">
-              <div class="testimonial-heading">
-                <h5>{{$testimonial->username}}</h5>
-                {{-- <h5>{{$testimonial->useremail}}</h5> --}}
-                <br><br>
-              <p>{{$testimonial->message}}</p>
-            </div>
-          </div>
-          </div>
+              @foreach ($testimonial as $testimonial)
+              <div class="testimonial-m">
+                  <div class="testimonial-img"> <img src="{{asset('images/cat-profile.png')}}" alt="" /> </div>
+                  <div class="testimonial-content">
+                    <div class="testimonial-heading">
+                      <h5>{{$testimonial->username}}</h5>
+                      {{-- <h5>{{$testimonial->useremail}}</h5> --}}
+                      <br><br>
+                    <p>{{$testimonial->message}}</p>
+                  </div>
+                </div>
+              </div>
               @endforeach
-
-
-
         </div>
       </div>
     </div>

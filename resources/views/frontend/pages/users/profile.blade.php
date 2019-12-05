@@ -82,16 +82,17 @@
               <label class="control-label">Your Address</label>
               <textarea class="form-control white_bg" name="address" rows="4" >{{$user->street_address}}</textarea>
             </div>
-            <div class="form-group">
-              <label class="control-label">Country</label>
-              <input class="form-control white_bg"  id="country" name="country" value="{{$user->country}}" type="text">
-            </div>
+
             <div class="form-group">
               <label class="control-label">City</label>
               <input class="form-control white_bg" id="city" name="city" value="{{$user->city}}" type="text">
             </div>
 
-
+            <div class="form-group">
+              <label class="control-label">Country</label>
+              <input class="form-control white_bg"  id="country" name="country" value="{{$user->country}}" type="text">
+            </div>
+            
             <div class="form-group">
               <button type="submit" name="updateprofile" class="btn">Save Changes <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
             </div>

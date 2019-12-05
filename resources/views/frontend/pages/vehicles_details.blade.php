@@ -10,7 +10,7 @@
   <section id="listing_img_slider">
 
         @foreach($vehicle->Vimage as $image)
-    <div><img src="{{asset('images/vehicle/'. $image->image)}}" class="img-responsive" alt="image" width="700" height="560"></div>
+    <div><img src="{{asset('images/vehicle/'. $image->image)}}" class="img-responsive" alt="image" style="width:600px; height:350px;"></div>
       @endforeach
 
   </section>
@@ -83,18 +83,18 @@
                         <td>Air Conditioner</td>
             @if($vehicle->AirConditioner==1)
 
-                                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                  <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-               <td><i class="fa fa-close" aria-hidden="true"></i></td>
+               <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
              @endif </tr>
 
             <tr>
             <td>AntiLock Braking System</td>
             @if($vehicle->AntiLockBrakingSystem==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
                                 </tr>
 
@@ -102,9 +102,9 @@
             <td>Power Steering</td>
             @if($vehicle->PowerSteering==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -115,9 +115,9 @@
 
             @if($vehicle->PowerWindows==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -125,9 +125,9 @@
             <td>CD Player</td>
             @if($vehicle->CDPlayer==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -135,9 +135,9 @@
             <td>Leather Seats</td>
             @if($vehicle->LeatherSeats==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -145,9 +145,9 @@
             <td>Central Locking</td>
             @if($vehicle->CentralLocking==1)
 
-            <td><i class="fa fa-check" style="color:green !important;" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;"  aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -155,18 +155,18 @@
             <td>Power Door Locks</td>
             @if($vehicle->PowerDoorLocks==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
                                 </tr>
                                 <tr>
             <td>Brake Assist</td>
             @if($vehicle->BrakeAssist==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -174,9 +174,9 @@
             <td>Driver Airbag</td>
             @if($vehicle->DriverAirbag==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
              </tr>
 
@@ -184,9 +184,9 @@
              <td>Passenger Airbag</td>
              @if($vehicle->PassengerAirbag==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -194,9 +194,9 @@
             <td>Crash Sensor</td>
             @if($vehicle->CrashSensor==1)
 
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" style="color:green; font-size:24px;" aria-hidden="true"></i></td>
           @else
-            <td><i class="fa fa-close" aria-hidden="true"></i></td>
+            <td><i class="fa fa-close" style="color:red; font-size:24px;" aria-hidden="true"></i></td>
           @endif
             </tr>
 
@@ -262,13 +262,13 @@
               {{-- @php $i=1; @endphp
               @foreach($v->Vimage as $image)
               @if($i>0) --}}
-              <div class="product-listing-img"> <a href="{{route('vehicles_details',$v->id)}}"><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}"class="img-responsive" alt="image" /> </a>
+              <div class="product-listing-img"> <a href="{{route('vehicles_details',$v->slug)}}"><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}"class="img-responsive" alt="image" /> </a>
               {{-- @endif
               @php $i--; @endphp
               @endforeach --}}
               </div>
               <div class="product-listing-content">
-                <h5><a href="{{route('vehicles_details',$v->id)}}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
+                <h5><a href="{{route('vehicles_details',$v->slug)}}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
                 <p class="list-price">${{$v->PricePerDay}}</p>
 
                 <ul class="features_list">

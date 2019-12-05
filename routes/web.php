@@ -22,7 +22,7 @@ Route::get('/car_list', 'Frontend\PagesController@car_list')->name('car_list');
 Route::post('/search_vehicle', 'Frontend\VehicleController@search')->name('search_vehicle');
 Route::get('/search', 'Frontend\PagesController@search')->name('search');
 
-Route::get('/vehicles_details/{id}','Frontend\VehicleController@index')->name('vehicles_details');
+Route::get('/vehicles_details/{slug}','Frontend\VehicleController@show')->name('vehicles_details');
 //contactController
 Route::get('/contect_us', 'Frontend\ContactController@index')->name('contact_us');
 

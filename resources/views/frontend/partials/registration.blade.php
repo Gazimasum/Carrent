@@ -16,7 +16,7 @@
                   <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" placeholder="Full Name" required="required"  value="{{ old('name') }}">
                 </div>
                       <div class="form-group">
-                  <input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone" placeholder="Mobile Number" maxlength="13" required="required"  value="{{ old('phone') }}">
+                  <input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone_no" placeholder="Mobile Number" maxlength="13" required="required"  value="{{ old('phone') }}">
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="emailid" onBlur="checkAvailability()" placeholder="Email Address" required="required"  value="{{ old('email') }}">

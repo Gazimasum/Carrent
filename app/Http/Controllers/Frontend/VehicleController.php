@@ -14,11 +14,9 @@ class VehicleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $vehicle = Vehicle::where('id',$id)->first();
-        $samevehicles = Vehicle::where('VehiclesBrand',$vehicle->VehiclesBrand)->get();
-        return view('frontend.pages.vehicles_details',compact('vehicle','samevehicles'));
+
     }
 
     /**
@@ -48,9 +46,11 @@ class VehicleController extends Controller
      * @param  \App\Model\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function show(Vehicle $vehicle)
+    public function show($slug)
     {
-        //
+      $vehicle = Vehicle::where('slug',$slug)->first();
+      $samevehicles = Vehicle::where('VehiclesBrand',$vehicle->VehiclesBrand)->get();
+      return view('frontend.pages.vehicles_details',compact('vehicle','samevehicles'));
     }
 
     /**

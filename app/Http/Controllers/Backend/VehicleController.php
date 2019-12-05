@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Model\Brand;
 use App\Model\Vehicle;
 use App\Model\Mainimage;
 use App\Model\Vimage;
+
 use Image;
 use File;
 
@@ -56,7 +58,7 @@ class VehicleController extends Controller
       $this->validate($request,
          ['vehicletitle' => 'required',
          'brandname' => 'required',
-         'vehicleoverview' => 'required|max:500',
+         'vehicleoverview' => 'required',
          'priceperday'=>'required',
         'fueltype'=>'required',
         'modelyear'=>'required',
@@ -67,12 +69,13 @@ class VehicleController extends Controller
        ],
        [
        'vehicletitle.required'=>"Please Provide a Title Name.",
-       'vehicleoverview.max'=>"Please Provide maximum 500 word.",
+       // 'vehicleoverview.max'=>"Please Provide maximum 500 word.",
      ]);
 
      $v=new Vehicle();
      $v->vehiclestitle=$request->vehicletitle;
      $v->vehiclesbrand=$request->brandname;
+     $v->slug=Str::slug($request->vehicletitle, '-');
      $v->vehiclesoverview=$request->vehicleoverview;
      $v->priceperday=$request->priceperday;
      $v->fueltype=$request->fueltype;
@@ -167,32 +170,26 @@ class VehicleController extends Controller
          $image_resize = Image::make($image->getRealPath());
          // $image_resize->resize(200, 400);
          $image_resize->save(public_path('images/vehicle/mainimages/' .$filename));
-         $mainimage = new Mainimage;
+         $mainimage = new Mainimage();
          $mainimage->vehicle_id = $v->id;
          $mainimage->image= $filename;
          $mainimage->save();
 
      }
 
+     if($request->hasfile('filename'))
+      {
+         foreach($request->file('filename') as $image)
+         {
 
-     if (count($request->filename)>0) {
-       foreach ($request->filename as $image) {
-        // $image= $request->file('user_image');
-         // $img=time().'.'.$image->getClientOriginalExtension();
-         // $location= public_path('images/vehicle/'.$img);
-         // Image::make($image)->save($location);
-
-         //$image       = $request->file('image');
-         $filename    = time().'.'.$image->getClientOriginalExtension();
-         $image_resize = Image::make($image->getRealPath());
-         $image_resize->resize(700, 560);
-         $image_resize->save(public_path('images/vehicle/' .$filename));
-         $vimage = new Vimage;
-         $vimage->vehicle_id = $v->id;
-         $vimage->image= $filename;
-         $vimage->save();
-       }
-     }
+             $name=time().".".$image->getClientOriginalName();
+             $image->move(public_path().'/images/vehicle/', $name);
+              $form= new Vimage();
+           $form->image=$name;
+           $form->vehicle_id=$v->id;
+           $form->save();
+         }
+      }
 
 
      // session()->flash('success',('A New Brand Added Successfully..'));

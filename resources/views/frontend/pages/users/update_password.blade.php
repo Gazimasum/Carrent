@@ -23,7 +23,7 @@
 <section class="user_profile inner_pages">
   <div class="container">
     <div class="user_profile_info gray-bg padding_4x4_40">
-      <div class="upload_user_logo"> <img src="{!! asset('images/dealer-logo.png') !!}" alt="image">
+      <div class="upload_user_logo"> <img src="{{ App\Helpers\ImageHelper::getUserImage($user->id) }}"  style="width:100px; border-radius: 50%;"  alt="image">
       </div>
 
       <div class="dealer_info">
@@ -51,10 +51,10 @@
             <div class="succWrap"><strong>FAILD</strong>: {{Session::get('sticky_error')}}</div>
             @endif
               </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label class="control-label">Current Password</label>
               <input class="form-control white_bg" id="password" name="ppassword"  type="password" required>
-            </div>
+            </div> --}}
 
             <div class="form-group">
               <label class="control-label">Password</label>

@@ -17,6 +17,7 @@ class CreateVehiclesTable extends Migration
                         $table->bigIncrements('id');
                         $table->String('VehiclesTitle');
                         $table->unsignedInteger('VehiclesBrand');
+                        $table->string('slug');
                         $table->text('VehiclesOverview');
                         $table->String('PricePerDay');
                         $table->String('FuelType');

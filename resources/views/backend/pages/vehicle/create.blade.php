@@ -95,7 +95,8 @@
 
                         <div class="form-group">
                           <div class="col-sm-4">
-                          Image  <span style="color:red">*</span><input type="file" name="filename[]" multiple required>
+                          Image  <span style="color:red">*</span>
+                          <input type="file" name="filename[]" multiple required>
                           </div>
                         </div>
 
