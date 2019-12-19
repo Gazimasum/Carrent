@@ -257,29 +257,31 @@
 
   @foreach($samevehicles as $v)
 
-          <div class="col-md-3 grid_listing">
-            <div class="product-listing-m gray-bg">
-              {{-- @php $i=1; @endphp
-              @foreach($v->Vimage as $image)
-              @if($i>0) --}}
-              <div class="product-listing-img"> <a href="{{route('vehicles_details',$v->slug)}}"><img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}"class="img-responsive" alt="image" /> </a>
-              {{-- @endif
-              @php $i--; @endphp
-              @endforeach --}}
-              </div>
-              <div class="product-listing-content">
-                <h5><a href="{{route('vehicles_details',$v->slug)}}">{{$v->Brand()}} , {{$v->VehiclesTitle}}</a></h5>
-                <p class="list-price">${{$v->PricePerDay}}</p>
+    <div class="col-list-3">
+    <div class="recent-car-list">
 
-                <ul class="features_list">
+        <div class="car-info-box">
+              <a href="{{route('vehicles_details',$v->slug)}}">
+                <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" >
+              </a>
 
-               <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
-                  <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$v->ModelYear}} model</li>
-                  <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}} </li>
+                <ul>
+                <li><i class="fa fa-car" aria-hidden="true"></i>{{$v->FuelType}}</li>
+                <li><i class="fa fa-calendar" aria-hidden="true"></i> Model : {{$v->ModelYear}}</li>
+                <li><i class="fa fa-user" aria-hidden="true"></i>{{$v->SeatingCapacity}} seats</li>
                 </ul>
-              </div>
-            </div>
           </div>
+          <div class="car-title-m">
+              <h6><a href="{{route('vehicles_details',$v->slug)}}">{{$v->VehiclesTitle}}</a></h6>
+              {{-- <h6><a href="{{route('vehicles_details',$v->id)}}"></a></h6> --}}
+              <span class="price">$ {{$v->PricePerDay}} /Day</span>
+          </div>
+          {{-- <div class="inventory_info_m">
+
+              <p>{{str_limit($v->VehiclesOverview, $limit = 200, $end = '...')}}</p>
+          </div> --}}
+    </div>
+  </div>
   @endforeach
 
         </div>

@@ -78,6 +78,8 @@ Route::get('/index', 'HomeController@index')->name('home');
     Route::post('/manage/vehicle/delete/{id}','Backend\VehicleController@delete')->name('admin.vehicle.delete');
     Route::post('/manage/vehicle/changemainimage/{id}','Backend\VehicleController@changemainimage')->name('admin.vehicle.mainimage');
     Route::post('/manage/vehicle/changeimage/{id}','Backend\VehicleController@changeimage')->name('admin.vehicle.image');
+    Route::post('/manage/vehicle/addimage/{id}','Backend\VehicleController@imageadd')->name('admin.vehicle.imageadd');
+
 
 //bookings
 
@@ -86,6 +88,13 @@ Route::get('/index', 'HomeController@index')->name('home');
     Route::post('/booking/notconfirm/{id}','Backend\BookingController@notconfirm')->name('admin.booking.notconfirm');
     Route::post('/booking/cancle/{id}','Backend\BookingController@cancle')->name('admin.booking.cancle');
 
+    // Banner Routes
+      Route::group(['prefix' => '/banners'], function(){
+        Route::get('/', 'Backend\BannerController@index')->name('admin.banners');
+        Route::post('/store', 'Backend\BannerController@store')->name('admin.banner.store');
+        Route::post('/banner/edit/{id}', 'Backend\BannerController@update')->name('admin.banner.update');
+        Route::post('/banner/delete/{id}', 'Backend\BannerController@delete')->name('admin.banner.delete');
+      });
 
     //testimonieal && contact_us
 

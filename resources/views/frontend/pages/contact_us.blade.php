@@ -30,15 +30,15 @@
             @csrf
             <div class="form-group">
               <label class="control-label">Full Name <span>*</span></label>
-              <input type="text" name="name" class="form-control white_bg" id="fullname" required>
+              <input type="text" name="name" class="form-control white_bg" id="fullname" value="{{ Auth::check() ? Auth::user()->name : '' }}" required>
             </div>
             <div class="form-group">
               <label class="control-label">Email Address <span>*</span></label>
-              <input type="email" name="email" class="form-control white_bg" id="emailaddress" required>
+              <input type="email" name="email" class="form-control white_bg" id="emailaddress" value="{{ Auth::check() ? Auth::user()->email : '' }}" required>
             </div>
             <div class="form-group">
               <label class="control-label">Phone Number <span>*</span></label>
-              <input type="text" name="phone" class="form-control white_bg" id="phonenumber" required>
+              <input type="text" name="phone" class="form-control white_bg" id="phonenumber" value="{{ Auth::check() ? Auth::user()->phone_no : '' }}" required>
             </div>
             <div class="form-group">
               <label class="control-label">Message <span>*</span></label>

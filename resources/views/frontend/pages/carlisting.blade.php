@@ -66,10 +66,9 @@
                 <select class="form-control" name="brand">
                   <option>Select Brand</option>
 
-                    @foreach ($vehicle as $v)
+                    @foreach (App\Model\Brand::get() as $brand)
 
-
-                      <option value="{{$v->id}}">{{$v->Brand()}}</option>
+                      <option value="{{$brand->id}}">{{$brand->name}}</option>
                     @endforeach
 
                 </select>
@@ -100,9 +99,9 @@
 
               <li class="gray-bg">
 
-                <div class="recent_post_img"> <a href="{{route('vehicles_details',$rv->id)}}"><img src="{{ asset('images/vehicle/mainimages/'. $rv->mainimage->image) }}" alt="image"></a> </div>
+                <div class="recent_post_img"> <a href="{{route('vehicles_details',$rv->slug)}}"><img src="{{ asset('images/vehicle/mainimages/'. $rv->mainimage->image) }}" alt="image"></a> </div>
 
-							  <div class="recent_post_title"> <a href="{{route('vehicles_details',$rv->id)}}">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
+							  <div class="recent_post_title"> <a href="{{route('vehicles_details',$rv->slug)}}">{{$rv->Brand()}} , {{$rv->VehiclesTitle}}</a>
                   <p class="widget_price">${{$rv->PricePerDay}} Per Day</p>
                 </div>
               </li>

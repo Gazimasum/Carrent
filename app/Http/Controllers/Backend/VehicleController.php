@@ -168,7 +168,7 @@ class VehicleController extends Controller
          $filename    = time().'.'.$image->getClientOriginalExtension();
 
          $image_resize = Image::make($image->getRealPath());
-         // $image_resize->resize(200, 400);
+         $image_resize->resize(356, 278);
          $image_resize->save(public_path('images/vehicle/mainimages/' .$filename));
          $mainimage = new Mainimage();
          $mainimage->vehicle_id = $v->id;
@@ -354,21 +354,21 @@ class VehicleController extends Controller
         public function changemainimage(Request $request,$id)
         {
 
-          $vimage = Mainimage::find($id);
+          $mainimage = Mainimage::find($id);
 
-          if(File::exists('images/vehicle/mainimages/'.$vimage->image)){
-            File::delete('images/vehicle/mainimages/'.$vimage->image);
+          if(File::exists('images/vehicle/mainimages/'.$mainimage->image)){
+            File::delete('images/vehicle/mainimages/'.$mainimage->image);
           }
 
-            $image=$request->mainimage;
-             // $image= $request->file('user_image');
-              $img=time().'.'.$image->getClientOriginalExtension();
-              $location= public_path('images/vehicle/mainimages/'.$img);
-              Image::make($image)->save($location);
+          $image       = $request->file('mainimage');
+          $filename    = time().'.'.$image->getClientOriginalExtension();
 
+          $image_resize = Image::make($image->getRealPath());
+          $image_resize->resize(356, 278);
+          $image_resize->save(public_path('images/vehicle/mainimages/' .$filename));
 
-              $vimage->image= $img;
-              $vimage->save();
+              $mainimage->image= $filename;
+              $mainimage->save();
               Toastr::success('Mainimage Image Changes Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
               return back();
 
@@ -393,6 +393,22 @@ class VehicleController extends Controller
               Toastr::success(' Image Changes Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
               return back();
 
+        }
+
+        public function imageadd(Request $r,$id)
+        {
+          $vimage = new Vimage();
+          $image=$r->image;
+           // $image= $request->file('user_image');
+            $img=time().'.'.$image->getClientOriginalExtension();
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(700, 560);
+            $image_resize->save(public_path('images/vehicle/' .$img));
+            $vimage->image= $img;
+            $vimage->vehicle_id=$id;
+            $vimage->save();
+            Toastr::success(' Image Added Successfully..', 'Success', ["positionClass" => "toast-top-center"]);
+            return back();
         }
 
 

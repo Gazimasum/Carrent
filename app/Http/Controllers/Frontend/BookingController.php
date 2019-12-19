@@ -45,8 +45,11 @@ class BookingController extends Controller
      */
     public function store(Request $request,$id)
     {
+
       $booking = new Booking();
       $user = Auth::user();
+if ($request->fromdate<= $request->todate && $request->fromdate>=date('Y-m-d')) {
+  // code...
 
       $booking->message = $request->message;
       $booking->from_date = $request->fromdate;
@@ -58,9 +61,8 @@ class BookingController extends Controller
         $booking->user_id = $user->id;
       }
 
-  //    session()->flash('success', 'Booking Success');
-// $user->notify(new InvoicePaid($invoice));
-if ($booking->save()) {
+
+        if ($booking->save()) {
   // code...
 
       $admin = Admin::get();
@@ -69,7 +71,14 @@ if ($booking->save()) {
       }
        Toastr::success('Booking Success wait for our call....', 'Success', ["positionClass" => "toast-top-center"]);
           return redirect()->route('index');
+        }}
+        else {
+          Toastr::Error('Date Format Invaild..Please Correct Your Resarvation Date..', 'Error', ["positionClass" => "toast-top-center"]);
+             return back();
         }
+
+
+
     }
 
     /**

@@ -29,7 +29,8 @@
 
       <div class="dealer_info">
         <h5>{{$user->name}}</h5>
-        <p>Street Address : {{$user->street_address}}<br>
+        <p>Birth Date : {{$user->dob}}<br>
+        Street Address : {{$user->street_address}}<br>
         City : {{$user->city}}<br> Country : {{$user->country}}</p>
       </div>
     </div>
@@ -92,7 +93,7 @@
               <label class="control-label">Country</label>
               <input class="form-control white_bg"  id="country" name="country" value="{{$user->country}}" type="text">
             </div>
-            
+
             <div class="form-group">
               <button type="submit" name="updateprofile" class="btn">Save Changes <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
             </div>

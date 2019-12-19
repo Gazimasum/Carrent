@@ -14,73 +14,71 @@
   								<div class="panel panel-default">
   									<div class="panel-heading">Basic Info</div>
   									<div class="panel-body">
+                        <form method="post" action="{!! route('admin.vehicle.update',$vehicles->id) !!}" class="form-horizontal" enctype="multipart/form-data">
+                          @csrf
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <input type="text" name="vehicletitle" class="form-control" value="{{$vehicles->VehiclesTitle}}" required>
+                        </div>
+                        <label class="col-sm-2 control-label">Select Brand<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <select class="selectpicker" name="brandname" required>
+                        {{-- <option >{{$vehicles->Brand()}} </option> --}}
 
+                        @foreach ($brands as $b)
 
-  <form method="post" action="{!! route('admin.vehicle.update',$vehicles->id) !!}" class="form-horizontal" enctype="multipart/form-data">
-    @csrf
-  <div class="form-group">
-  <label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <input type="text" name="vehicletitle" class="form-control" value="{{$vehicles->VehiclesTitle}}" required>
-  </div>
-  <label class="col-sm-2 control-label">Select Brand<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <select class="selectpicker" name="brandname" required>
-  {{-- <option >{{$vehicles->Brand()}} </option> --}}
-
-  @foreach ($brands as $b)
-
-      <option value="{{ $b->id }}" {{ $vehicles->brand_id == $b->id ? 'selected' : '' }}>{{ $b->name }}</option>
-  @endforeach
+                            <option value="{{ $b->id }}" {{ $vehicles->brand_id == $b->id ? 'selected' : '' }}>{{ $b->name }}</option>
+                        @endforeach
 
 
 
-  </select>
-  </div>
-  </div>
+                        </select>
+                        </div>
+                        </div>
 
-  <div class="hr-dashed"></div>
-  <div class="form-group">
-  <label class="col-sm-2 control-label">Vehical Overview<span style="color:red">*</span></label>
-  <div class="col-sm-10">
-  <textarea class="form-control" name="vehicleoverview" rows="3" required>{{$vehicles->VehiclesOverview}}</textarea>
-  </div>
-  </div>
+                        <div class="hr-dashed"></div>
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">Vehical Overview<span style="color:red">*</span></label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name="vehicleoverview" rows="3" required>{{$vehicles->VehiclesOverview}}</textarea>
+                        </div>
+                        </div>
 
-  <div class="form-group">
-  <label class="col-sm-2 control-label">Price Per Day(in USD)<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <input type="text" name="priceperday" class="form-control" value="{{$vehicles->PricePerDay}}" required>
-  </div>
-  <label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <select class="selectpicker" name="fueltype" required>
-  <option value="{{$vehicles->FuelType}}"> {{$vehicles->FuelType}} </option>
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">Price Per Day(in USD)<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <input type="text" name="priceperday" class="form-control" value="{{$vehicles->PricePerDay}}" required>
+                        </div>
+                        <label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <select class="selectpicker" name="fueltype" required>
+                        <option value="{{$vehicles->FuelType}}"> {{$vehicles->FuelType}} </option>
 
-  <option value="Petrol">Petrol</option>
-  <option value="Diesel">Diesel</option>
-  <option value="CNG">CNG</option>
-  </select>
-  </div>
-  </div>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="CNG">CNG</option>
+                        </select>
+                        </div>
+                        </div>
 
 
-  <div class="form-group">
-  <label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <input type="text" name="modelyear" class="form-control" value="{{$vehicles->ModelYear}}" required>
-  </div>
-  <label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
-  <div class="col-sm-4">
-  <input type="text" name="seatingcapacity" class="form-control" value="{{$vehicles->SeatingCapacity}}" required>
-  </div>
-  </div>
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <input type="text" name="modelyear" class="form-control" value="{{$vehicles->ModelYear}}" required>
+                        </div>
+                        <label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                        <input type="text" name="seatingcapacity" class="form-control" value="{{$vehicles->SeatingCapacity}}" required>
+                        </div>
+                        </div>
 
-  <div class="row">
-  <div class="col-md-12">
-  <div class="panel panel-default">
-  <div class="panel-heading">Accessories</div>
-  <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-12">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">Accessories</div>
+                        <div class="panel-body">
         <div class="form-group">
                 <div class="col-sm-3">
                       @if($vehicles->AirConditioner==1)
@@ -303,37 +301,51 @@
               </div>
             </div>
 
-          <div class="form-group">
-            <div class="panel panel-default">
+        <div class="form-group">
+          <div class="panel panel-default">
             <div class="panel-heading">Image Change</div>
-            <div class="panel-body">
+
             @foreach($vehicles->Vimage as $image)
-          <div class="col-sm-4">
+              <div class="col-sm-4">
+                <div class="panel-body">
+                  <div class="card" style="width: 18rem;">
+                    <img src="{{asset('images/vehicle/'. $image->image)}}" class="card-img-top img-responsive" style="height:242px;width:241px;"alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"></h5>
+                      <p class="card-text"></p>
+                      <form class="" action="{!! route('admin.vehicle.image',$image->id) !!}" method="post" enctype="multipart/form-data">
+                          @csrf
+                          <input class="form-control" type="file" name="image" >
+                      	 <button class="btn btn-primary form-control" name="submit" type="submit">Change Image</button>
+                      </form>
 
-            <div class="card" style="width: 18rem;">
-          <img src="{{asset('images/vehicle/'. $image->image)}}" class="card-img-top img-responsive" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
-            <form class="" action="{!! route('admin.vehicle.image',$image->id) !!}" method="post" enctype="multipart/form-data">
-              @csrf
-              <input class="form-control" type="file" name="image" >
-              	<button class="btn btn-primary form-control" name="submit" type="submit">Change Image</button>
-            </form>
-
-          </div>
-        </div>
-          </div>
+                 </div>
+                </div>
+              </div>
+            </div>
         @endforeach
+        <br><br>
           </div>
         </div>
         </div>
         </div>
-        </div>
+        <div class="row">
+<div class="col-md-4">
 
 
+<h3>Add Image</h3>
+        <form class="" action="{!! route('admin.vehicle.imageadd',$vehicles->id) !!}" method="post" enctype="multipart/form-data">
+          @csrf
+          <input class="form-control" type="file" name="image" >
+            <button class="btn btn-primary form-control" name="submit" type="submit">Add Image</button>
+        </form>
+          </div>
+          </div>
+          <br><br>
   			</div>
   		</div>
+  	</div>
+  	</div>
   	</div>
 
 @endsection

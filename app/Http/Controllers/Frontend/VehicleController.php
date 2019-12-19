@@ -6,6 +6,7 @@ use App\Model\Vehicle;
 use App\Model\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class VehicleController extends Controller
 {
@@ -94,10 +95,12 @@ class VehicleController extends Controller
       $vehiclecount=Vehicle::where('VehiclesBrand',$brand)->where('FuelType',$type)->count();
       $recentvehicle = Vehicle::orderby('id','desc')->paginate(3);
       if ($vehiclecount!=null) {
+        Toastr::success(''.$vehiclecount.' car Available in your filter', 'Success', ["positionClass" => "toast-top-center"]);
           return view('frontend.pages.carlisting')->with('vehicle', $vehicle)->with('recentvehicle', $recentvehicle)->with('vehiclecount', $vehiclecount);
       }
       else {
-        session()->flash('sticky_error', 'No Car available...');
+        Toastr::error('No Car Available in your filter....', 'Error', ["positionClass" => "toast-top-center"]);
+
       return redirect()->route('car_list');
       }
     }

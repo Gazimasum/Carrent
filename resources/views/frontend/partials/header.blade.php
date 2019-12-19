@@ -1,4 +1,6 @@
-
+@php
+  $contact = App\Model\Contact::find(1)->first();
+@endphp
 <header>
   <div class="default-header">
     <div class="container">
@@ -11,11 +13,11 @@
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
               <p class="uppercase_text">For Support Mail us : </p>
-              <a href="mailto:info@example.com">your@gmail.com</a> </div>
+              <a href="{{$contact->email}}">{{$contact->email}}</a> </div>
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
               <p class="uppercase_text">Service Helpline Call Us: </p>
-              <a href="tel:61-1234-5678-09">+0000000000</a> </div>
+              <a href="tel:{{$contact->phone}}">{{$contact->phone}}</a> </div>
             <div class="social-follow">
               <ul>
                 <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
@@ -35,70 +37,7 @@
       </div>
     </div>
   </div>
-{{--
-  <!-- Navigation -->
-  <nav id="navigation_bar" class="navbar navbar-default">
-    <div class="container">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navigation">
-               <ul class="nav navbar-nav">
-                 <li><a href="index.php">Home</a>    </li>
-
-                 <li><a href="page.php?type=aboutus">About Us</a></li>
-                 <li><a href="car-listing.php">Car Listing</a>
-                 <li><a href="page.php?type=faqs">FAQs</a></li>
-                 <li><a href="contact-us.php">Contact Us</a></li>
-
-               </ul>
-             </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-</nav>
-  <!-- Navigation end --> --}}
-
-
-  <!-- Navigation -->
  <nav id="navigation_bar" class="navbar navbar-default">
    <div class="container">
      <div class="navbar-header">
@@ -155,8 +94,8 @@
 
          <li><a href="{{route('about_us')}}">About Us</a></li>
          <li><a href="{!! route('car_list') !!}">Car Listing</a>
-         <li><a href="{!! route('faqs') !!}">FAQs</a></li>
          <li><a href="{{route('contact_us')}}">Contact Us</a></li>
+          <li><a href="{!! route('faqs') !!}">FAQs</a></li>
 
        </ul>
      </div>

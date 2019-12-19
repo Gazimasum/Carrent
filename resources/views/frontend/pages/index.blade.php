@@ -37,7 +37,7 @@
 
                   <div class="car-info-box">
                         <a href="{{route('vehicles_details',$v->slug)}}">
-                          <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" style="">
+                          <img src="{{ asset('images/vehicle/mainimages/'. $v->mainimage->image) }}" alt="{{ $v->VehiclesTitle }}" class="img-responsive" >
                         </a>
 
                           <ul>

@@ -29,7 +29,8 @@
 
         <div class="dealer_info">
           <h5>{{$user->name}}</h5>
-          <p>Street Address : {{$user->street_address}}<br>
+          <p>Birth Date : {{$user->dob}}<br>
+          Street Address : {{$user->street_address}}<br>
           City : {{$user->city}}<br> Country : {{$user->country}}</p>
         </div>
       </div>
